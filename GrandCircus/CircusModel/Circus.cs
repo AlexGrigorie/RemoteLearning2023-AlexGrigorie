@@ -7,6 +7,7 @@ namespace iQuest.GrandCircus.CircusModel
 {
     internal class Circus
     {
+        private const string circusName = "Spectacular Circus";
         private List<IAnimal> animals = new List<IAnimal>();
         private readonly Arena arena;
         public Circus(Arena arena)
@@ -24,7 +25,7 @@ namespace iQuest.GrandCircus.CircusModel
 
         public void Perform()
         {
-            arena.PresentCircus("Spectacular Circus");
+            arena.PresentCircus(circusName);
             foreach (var animal in animals)
             {
                 arena.AnnounceAnimal(animal.Name, animal.SpeciesName);

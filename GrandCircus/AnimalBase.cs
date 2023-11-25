@@ -1,6 +1,4 @@
 ﻿using iQuest.GrandCircus.Interfaces;
-using System;
-
 namespace iQuest.GrandCircus
 {
     internal abstract class AnimalBase : IAnimal
@@ -13,9 +11,6 @@ namespace iQuest.GrandCircus
             SpeciesName = species;
         }
 
-        public virtual string MakeSound()
-        {
-            return "As an animal I make a sound!";
-        }
+        public abstract string MakeSound();
     }
 }

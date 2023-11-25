@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace iQuest.GrandCircus.Animals
+﻿namespace iQuest.GrandCircus.Animals
 {
     internal class Dog : AnimalBase
     {

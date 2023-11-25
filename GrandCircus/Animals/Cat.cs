@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace iQuest.GrandCircus.Animals
+﻿namespace iQuest.GrandCircus.Animals
 {
     internal class Cat : AnimalBase
     {
