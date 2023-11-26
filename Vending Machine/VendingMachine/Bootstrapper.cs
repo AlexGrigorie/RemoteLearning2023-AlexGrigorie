@@ -2,7 +2,6 @@
 using iQuest.VendingMachine.PresentationLayer;
 using iQuest.VendingMachine.Repository;
 using iQuest.VendingMachine.UseCases;
-using iQuest.VendingMachine.View;
 
 namespace iQuest.VendingMachine
 {
@@ -26,7 +25,7 @@ namespace iQuest.VendingMachine
             useCases.AddRange(new IUseCase[]
             {
                 new LoginUseCase(vendingMachineApplication, mainDisplay),
-                new LookUseCase(vendingMachineApplication, mainDisplay, productRepository, shelfView),
+                new LookUseCase(productRepository, shelfView),
                 new LogoutUseCase(vendingMachineApplication),
                 new TurnOffUseCase(vendingMachineApplication)
             });

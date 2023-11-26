@@ -5,7 +5,7 @@ namespace iQuest.VendingMachine.Repository
 {
     internal class ProductRepository
     {
-        private static List<Product> Products = new List<Product>();
+        private static List<Product> products = new List<Product>();
 
         public ProductRepository()
         {
@@ -33,15 +33,15 @@ namespace iQuest.VendingMachine.Repository
             banana.Price = 2.5f;
             banana.Quantity = 10;
 
-            Products.Add(apple);
-            Products.Add(orange);
-            Products.Add(grape);
-            Products.Add(banana);
+            products.Add(apple);
+            products.Add(orange);
+            products.Add(grape);
+            products.Add(banana);
         }
 
         public IEnumerable<Product> GetAll()
         {
-            return Products;
+            return products;
         }
     }
 }
