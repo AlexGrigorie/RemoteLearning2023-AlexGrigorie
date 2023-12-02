@@ -1,5 +1,7 @@
 ﻿using iQuest.VendingMachine.Entities;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace iQuest.VendingMachine.Repository
 {
@@ -13,7 +15,7 @@ namespace iQuest.VendingMachine.Repository
             apple.ColumnId = 11;
             apple.Name = "Apple";
             apple.Price = 2;
-            apple.Quantity = 6;
+            apple.Quantity = 1;
 
             Product orange = new Product();
             orange.ColumnId = 12;
@@ -42,6 +44,12 @@ namespace iQuest.VendingMachine.Repository
         public IEnumerable<Product> GetAll()
         {
             return products;
+        }
+
+        public Product GetByColumn(int columnId)
+        {
+            Product product = products.Find(p => p.ColumnId == columnId);
+            return product;
         }
     }
 }
