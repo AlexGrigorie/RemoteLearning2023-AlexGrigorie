@@ -45,8 +45,8 @@ namespace iQuest.VendingMachine.UseCases
                 }
                 if (product.Quantity >= StatusProduct.SufficientStock)
                 {
-                    buyView.DispenseProduct(product.Name);
                     product.Quantity--;
+                    buyView.DispenseProduct(product.Name);
                 }
                 else
                 {
