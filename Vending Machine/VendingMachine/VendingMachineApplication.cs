@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using iQuest.VendingMachine.Exceptions;
 using iQuest.VendingMachine.PresentationLayer;
 
 namespace iQuest.VendingMachine
@@ -33,9 +34,25 @@ namespace iQuest.VendingMachine
                     IUseCase useCase = mainDisplay.ChooseCommand(availableUseCases);
                     useCase.Execute();
                 }
-                catch (Exception ex)
+                catch (CancelException ex)
                 {
-                    mainDisplay.DisplayExptionMessage(ex);
+                    mainDisplay.DisplayExceptionMessage(ex);
+                }
+                catch(InsufficientStockException ex)
+                {
+                    mainDisplay.DisplayExceptionMessage(ex);
+                }
+                catch(InvalidColumnException ex)
+                {
+                    mainDisplay.DisplayExceptionMessage(ex);
+                }
+                catch(InvalidPasswordException ex)
+                {
+                    mainDisplay.DisplayExceptionMessage(ex);
+                }
+                catch(Exception ex)
+                {
+                    mainDisplay.DisplayExceptionMessage(ex);
                 }
             }
         }
