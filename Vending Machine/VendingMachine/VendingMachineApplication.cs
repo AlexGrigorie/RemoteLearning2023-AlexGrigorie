@@ -26,11 +26,17 @@ namespace iQuest.VendingMachine
 
             while (!turnOffWasRequested)
             {
-                IEnumerable<IUseCase> availableUseCases = useCases
-                    .Where(x => x.CanExecute);
+                try
+                {
+                    IEnumerable<IUseCase> availableUseCases = useCases.Where(x => x.CanExecute);
 
-                IUseCase useCase = mainDisplay.ChooseCommand(availableUseCases);
-                useCase.Execute();
+                    IUseCase useCase = mainDisplay.ChooseCommand(availableUseCases);
+                    useCase.Execute();
+                }
+                catch (Exception ex)
+                {
+                    mainDisplay.DisplayExptionMessage(ex);
+                }
             }
         }
 

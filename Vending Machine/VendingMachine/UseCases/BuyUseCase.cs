@@ -27,36 +27,22 @@ namespace iQuest.VendingMachine.UseCases
         public void Execute()
         {
             int productId = buyView.RequestProduct();
-            try
-            {
-                if (productId == StatusProduct.CancelBuyProduct) throw new CancelException();
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.HandleException(ex);
-                return;
-            }
-            try
-            {
-                Product product = productRepository.GetByColumn(productId);
-                if (product == null)
-                {
-                    throw new InvalidColumnException();
-                }
-                if (product.Quantity >= StatusProduct.SufficientStock)
-                {
-                    product.Quantity--;
-                    buyView.DispenseProduct(product.Name);
-                }
-                else
-                {
-                    throw new InsufficientStockException();
-                }
-            }
-            catch (Exception ex)
-            {
 
-                ExceptionHandler.HandleException(ex);
+            if (productId == StatusProduct.CancelBuyProduct) throw new CancelException();
+
+            Product product = productRepository.GetByColumn(productId);
+            if (product == null)
+            {
+                throw new InvalidColumnException();
+            }
+            if (product.Quantity >= StatusProduct.SufficientStock)
+            {
+                product.Quantity--;
+                buyView.DispenseProduct(product.Name);
+            }
+            else
+            {
+                throw new InsufficientStockException();
             }
         }
     }
