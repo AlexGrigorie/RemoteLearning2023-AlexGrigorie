@@ -12,7 +12,7 @@ namespace iQuest.VendingMachine.PresentationLayer
             DisplayLine(title, ConsoleColor.Cyan);
             foreach (Product product in products)
             {
-                DisplayLine($"Product:{product.Name} Price:{product.Price}$ Quantity:{product.Quantity}", ConsoleColor.DarkCyan);
+                DisplayLine($"Id:{product.ColumnId} Name:{product.Name} Price:{product.Price}$ Quantity:{product.Quantity}", ConsoleColor.DarkCyan);
             }
         }
     }
