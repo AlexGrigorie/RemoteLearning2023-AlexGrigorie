@@ -24,40 +24,18 @@ namespace iQuest.VendingMachine
         public void Run()
         {
             turnOffWasRequested = false;
-            bool isABuyAction = false;
 
             while (!turnOffWasRequested)
             {
                 try
                 {
                     IEnumerable<IUseCase> availableUseCases = useCases.Where(x => x.CanExecute);
-                    if (isABuyAction)
-                    {
-                        IUseCase buyUseCase = useCases.FirstOrDefault(x => x.Name == "buy");
-                        buyUseCase.Execute();
-                        isABuyAction = false;
-                    }
-                    else
-                    {
-                        IUseCase useCase = mainDisplay.ChooseCommand(availableUseCases);
-                        useCase.Execute();
-                    }
-
-                }
-                catch (CancelException ex)
-                {
-                    mainDisplay.DisplayExceptionMessage(ex);
-                    isABuyAction = false;
+                    IUseCase useCase = mainDisplay.ChooseCommand(availableUseCases);
+                    useCase.Execute();
                 }
                 catch(InsufficientStockException ex)
                 {
                     mainDisplay.DisplayExceptionMessage(ex);
-                    isABuyAction = false;
-                }
-                catch(InvalidColumnException ex)
-                {
-                    mainDisplay.DisplayExceptionMessage(ex);
-                    isABuyAction = true;
                 }
                 catch(InvalidPasswordException ex)
                 {
@@ -66,7 +44,6 @@ namespace iQuest.VendingMachine
                 catch(Exception ex)
                 {
                     mainDisplay.DisplayExceptionMessage(ex);
-                    isABuyAction = false;
                 }
             }
         }
