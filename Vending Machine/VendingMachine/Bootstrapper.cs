@@ -18,7 +18,7 @@ namespace iQuest.VendingMachine
             MainDisplay mainDisplay = new MainDisplay();
             ProductRepository productRepository = new ProductRepository();
             ShelfView shelfView = new ShelfView();
-            BuyView buyView = new BuyView(productRepository, mainDisplay);
+            BuyView buyView = new BuyView();
             List<IUseCase> useCases = new List<IUseCase>();
 
             VendingMachineApplication vendingMachineApplication = new VendingMachineApplication(useCases, mainDisplay);

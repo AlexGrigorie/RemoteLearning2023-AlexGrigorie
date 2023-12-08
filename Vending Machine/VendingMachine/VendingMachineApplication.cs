@@ -32,8 +32,17 @@ namespace iQuest.VendingMachine
                     IEnumerable<IUseCase> availableUseCases = useCases.Where(x => x.CanExecute);
                     IUseCase useCase = mainDisplay.ChooseCommand(availableUseCases);
                     useCase.Execute();
+
+                }
+                catch (CancelException ex)
+                {
+                    mainDisplay.DisplayExceptionMessage(ex);
                 }
                 catch(InsufficientStockException ex)
+                {
+                    mainDisplay.DisplayExceptionMessage(ex);
+                }
+                catch(InvalidColumnException ex)
                 {
                     mainDisplay.DisplayExceptionMessage(ex);
                 }

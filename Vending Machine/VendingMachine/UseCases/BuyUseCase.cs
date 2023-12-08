@@ -27,13 +27,14 @@ namespace iQuest.VendingMachine.UseCases
         public void Execute()
         {
             int productId = buyView.RequestProduct();
+
+            if (productId == StatusProduct.CancelBuyProduct) throw new CancelException();
+
             Product product = productRepository.GetByColumn(productId);
-
-            if (productId == StatusProduct.CancelBuyProduct)
+            if (product == null)
             {
-                return;
+                throw new InvalidColumnException();
             }
-
             if (product.Quantity >= StatusProduct.SufficientStock)
             {
                 product.Quantity--;
