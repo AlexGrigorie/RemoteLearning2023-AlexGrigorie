@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using iQuest.VendingMachine.Exceptions;
+using iQuest.VendingMachine.Interfaces;
 using iQuest.VendingMachine.PresentationLayer;
 
 namespace iQuest.VendingMachine
 {
-    internal class VendingMachineApplication
+    internal class VendingMachineApplication : IVendingMachineApplication
     {
         private readonly List<IUseCase> useCases;
         private readonly MainDisplay mainDisplay;

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using iQuest.VendingMachine.PresentationLayer;
+﻿using iQuest.VendingMachine.PresentationLayer;
 using iQuest.VendingMachine.Repository;
 using iQuest.VendingMachine.UseCases;
+using System.Collections.Generic;
 
 namespace iQuest.VendingMachine
 {

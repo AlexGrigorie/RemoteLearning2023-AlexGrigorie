@@ -1,13 +1,13 @@
-﻿using System;
-using iQuest.VendingMachine.Exceptions;
-using iQuest.VendingMachine.PresentationLayer;
+﻿using iQuest.VendingMachine.Exceptions;
+using iQuest.VendingMachine.Interfaces;
+using System;
 
 namespace iQuest.VendingMachine.UseCases
 {
     internal class LoginUseCase : IUseCase
     {
-        private readonly VendingMachineApplication application;
-        private readonly MainDisplay mainDisplay;
+        private readonly IVendingMachineApplication application;
+        private readonly IMainDisplay mainDisplay;
 
         public string Name => "login";
 
@@ -15,7 +15,7 @@ namespace iQuest.VendingMachine.UseCases
 
         public bool CanExecute => !application.UserIsLoggedIn;
 
-        public LoginUseCase(VendingMachineApplication application, MainDisplay mainDisplay)
+        public LoginUseCase(IVendingMachineApplication application, IMainDisplay mainDisplay)
         {
             this.application = application ?? throw new ArgumentNullException(nameof(application));
             this.mainDisplay = mainDisplay ?? throw new ArgumentNullException(nameof(mainDisplay));

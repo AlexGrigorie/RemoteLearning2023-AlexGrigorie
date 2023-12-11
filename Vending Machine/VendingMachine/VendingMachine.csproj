@@ -6,5 +6,9 @@
     <AssemblyName>iQuest.VendingMachine</AssemblyName>
     <RootNamespace>iQuest.VendingMachine</RootNamespace>
   </PropertyGroup>
-
+	<ItemGroup>
+		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+			<_Parameter1>iQuest.VendingMachineTests</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
 </Project>

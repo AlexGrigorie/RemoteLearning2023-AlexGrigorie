@@ -1,8 +1,9 @@
-﻿using System;
+﻿using iQuest.VendingMachine.Interfaces;
+using System;
 
 namespace iQuest.VendingMachine.PresentationLayer
 {
-    internal class BuyView : DisplayBase
+    internal class BuyView : DisplayBase, IBuyView
     {
         private const string askForColumnNumber = "Please enter the number for your product";
         public int RequestProduct()

@@ -1,20 +1,19 @@
-﻿using iQuest.VendingMachine.PresentationLayer;
-using iQuest.VendingMachine.Repository;
+﻿using iQuest.VendingMachine.Interfaces;
 using System;
 
 namespace iQuest.VendingMachine.UseCases
 {
     internal class LookUseCase : IUseCase
     {
-        private readonly ProductRepository productRepository;
-        private readonly ShelfView shelfView;
+        private readonly IProductRepository productRepository;
+        private readonly IShelfView shelfView;
         public string Name => "look";
 
         public string Description => "Display all available products.";
 
         public bool CanExecute => true;
 
-        public LookUseCase( ProductRepository productRepository, ShelfView shelfView)
+        public LookUseCase(IProductRepository productRepository, IShelfView shelfView)
         {
             this.productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
             this.shelfView = shelfView ?? throw new ArgumentNullException(nameof(shelfView));

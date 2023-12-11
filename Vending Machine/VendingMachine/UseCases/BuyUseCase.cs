@@ -1,23 +1,22 @@
 ﻿using iQuest.VendingMachine.Entities;
 using iQuest.VendingMachine.Exceptions;
 using iQuest.VendingMachine.Helper;
-using iQuest.VendingMachine.PresentationLayer;
-using iQuest.VendingMachine.Repository;
+using iQuest.VendingMachine.Interfaces;
 using System;
 namespace iQuest.VendingMachine.UseCases
 {
     internal class BuyUseCase : IUseCase
     {
-        private readonly VendingMachineApplication application;
-        private readonly BuyView buyView;
-        private readonly ProductRepository productRepository;
+        private readonly IVendingMachineApplication application;
+        private readonly IBuyView buyView;
+        private readonly IProductRepository productRepository;
         public string Name => "buy";
 
         public string Description => "Buy your favourite product";
 
         public bool CanExecute => !application.UserIsLoggedIn;
 
-        public BuyUseCase(VendingMachineApplication application, BuyView buyView, ProductRepository productRepository)
+        public BuyUseCase(IVendingMachineApplication application, IBuyView buyView, IProductRepository productRepository)
         {
             this.application = application ?? throw new ArgumentNullException(nameof(application));
             this.buyView = buyView ?? throw new ArgumentNullException(nameof(buyView));
