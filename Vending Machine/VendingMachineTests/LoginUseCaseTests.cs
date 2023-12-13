@@ -13,18 +13,18 @@ namespace iQuest.VendingMachineTests
         {
             //Arrange
             string password = "supercalifragilisticexpialidocious";
-            var vendingMachine = new Mock<IVendingMachineApplication>();
-            var mainDisplay = new Mock<IMainDisplay>();
-            LoginUseCase login = new LoginUseCase(vendingMachine.Object, mainDisplay.Object);
+            var mockVendingMachine = new Mock<IVendingMachineApplication>();
+            var mockMainDisplay = new Mock<IMainDisplay>();
+            LoginUseCase login = new LoginUseCase(mockVendingMachine.Object, mockMainDisplay.Object);
 
-            mainDisplay.Setup(m => m.AskForPassword()).Returns(password);
-            vendingMachine.Setup(x => x.UserIsLoggedIn).Returns(true);
+            mockMainDisplay.Setup(m => m.AskForPassword()).Returns(password);
+            mockVendingMachine.Setup(x => x.UserIsLoggedIn).Returns(true);
 
             //Act
             login.Execute();
 
             //Assert
-            Assert.IsTrue(vendingMachine.Object.UserIsLoggedIn);
+            Assert.IsTrue(mockVendingMachine.Object.UserIsLoggedIn);
 
         }
         [TestMethod]
@@ -32,12 +32,12 @@ namespace iQuest.VendingMachineTests
         {
             //Arrange
             string password = "supercalifragilisticexpialidocious_test";
-            var vendingMachine = new Mock<IVendingMachineApplication>();
-            var mainDisplay = new Mock<IMainDisplay>();
-            LoginUseCase login = new LoginUseCase(vendingMachine.Object, mainDisplay.Object);
+            var mockVendingMachine = new Mock<IVendingMachineApplication>();
+            var mockMainDisplay = new Mock<IMainDisplay>();
+            LoginUseCase login = new LoginUseCase(mockVendingMachine.Object, mockMainDisplay.Object);
 
-            mainDisplay.Setup(m => m.AskForPassword()).Returns(password);
-            vendingMachine.Setup(x => x.UserIsLoggedIn).Returns(false);
+            mockMainDisplay.Setup(m => m.AskForPassword()).Returns(password);
+            mockVendingMachine.Setup(x => x.UserIsLoggedIn).Returns(false);
 
             //Act & Assert
             Assert.ThrowsException<InvalidPasswordException>(() => login.Execute());

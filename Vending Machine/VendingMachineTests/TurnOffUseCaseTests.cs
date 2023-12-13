@@ -11,14 +11,14 @@ namespace iQuest.VendingMachineTests
         public void HavingTurnOffUseCase_WhenExecute_ThenStopApplication()
         {
             //Arrange
-            var vendingMachine = new Mock<IVendingMachineApplication>();
-            TurnOffUseCase turnOff = new TurnOffUseCase(vendingMachine.Object);
+            var mockVendingMachine = new Mock<IVendingMachineApplication>();
+            TurnOffUseCase turnOff = new TurnOffUseCase(mockVendingMachine.Object);
 
             //Act
             turnOff.Execute();
 
             //Assert
-            vendingMachine.Verify(v => v.TurnOff(), Times.Once);
+            mockVendingMachine.Verify(v => v.TurnOff(), Times.Once);
         }
     }
 }

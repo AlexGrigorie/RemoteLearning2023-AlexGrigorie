@@ -12,9 +12,9 @@ namespace iQuest.VendingMachineTests
         public void HavingLookUseCase_WhenExecute_ThenDisplayAllProducts()
         {
             //Arrange
-            var productRepository = new Mock<IProductRepository>();
-            var shelfView = new Mock<IShelfView>();
-            LookUseCase look = new LookUseCase(productRepository.Object, shelfView.Object);
+            var mockProductRepository = new Mock<IProductRepository>();
+            var mockShelfView = new Mock<IShelfView>();
+            LookUseCase look = new LookUseCase(mockProductRepository.Object, mockShelfView.Object);
 
             var products = new List<Product>
             {
@@ -23,13 +23,13 @@ namespace iQuest.VendingMachineTests
                 new Product {ColumnId = 13, Name= "Apple", Price = 2.99f, Quantity = 2 },
 
             };
-            productRepository.Setup(p => p.GetAll()).Returns(products);
+            mockProductRepository.Setup(p => p.GetAll()).Returns(products);
 
             //Act
             look.Execute();
 
             //Assert
-            shelfView.Verify(s => s.DisplayProducts(products), Times.Once);
+            mockShelfView.Verify(s => s.DisplayProducts(products), Times.Once);
         }
     }
 }

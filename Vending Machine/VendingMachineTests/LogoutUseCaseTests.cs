@@ -11,14 +11,14 @@ namespace iQuest.VendingMachineTests
         public void HavingLogoutUseCase_WhenExecute_ThenSetUserIsLoggedInToFalse()
         {
             //Arrange
-            var vendingMachine = new Mock<IVendingMachineApplication>();
-            LogoutUseCase logout = new LogoutUseCase(vendingMachine.Object);
+            var mockVendingMachine = new Mock<IVendingMachineApplication>();
+            LogoutUseCase logout = new LogoutUseCase(mockVendingMachine.Object);
 
             //Act
             logout.Execute();
 
             //Assert
-            bool isLougout = vendingMachine.Object.UserIsLoggedIn;
+            bool isLougout = mockVendingMachine.Object.UserIsLoggedIn;
 
             Assert.IsFalse(isLougout);
         }
