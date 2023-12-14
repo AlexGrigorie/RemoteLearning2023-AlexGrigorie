@@ -9,12 +9,54 @@ namespace iQuest.VendingMachineTests
     public class LookUseCaseTests
     {
         [TestMethod]
+        public void HavingLookUseCase_WhenName_DisplayCorrectValue()
+        {
+            //Arrange
+            var mockProductRepository = new Mock<IProductRepository>();
+            var mockShelfView = new Mock<IShelfView>();
+            LookUseCase lookUseCase = new LookUseCase(mockProductRepository.Object, mockShelfView.Object);
+
+            //Act
+            string name = lookUseCase.Name;
+
+            //Assert
+            Assert.AreEqual("look", name);
+        }
+        [TestMethod]
+        public void HavingLookUseCase_WhenDescription_DisplayCorrectValue()
+        {
+            //Arrange
+            var mockProductRepository = new Mock<IProductRepository>();
+            var mockShelfView = new Mock<IShelfView>();
+            LookUseCase lookUseCase = new LookUseCase(mockProductRepository.Object, mockShelfView.Object);
+
+            //Act
+            string description = lookUseCase.Description;
+
+            //Assert
+            Assert.AreEqual("Display all available products.", description);
+        }
+        [TestMethod]
+        public void HavingLookUseCase_WhenAnyone_CanExecuteIsTrue()
+        {
+            //Arrange
+            var mockProductRepository = new Mock<IProductRepository>();
+            var mockShelfView = new Mock<IShelfView>();
+            LookUseCase lookUseCase = new LookUseCase(mockProductRepository.Object, mockShelfView.Object);
+
+            //Act
+            bool canExecute = lookUseCase.CanExecute;
+
+            //Assert
+            Assert.IsTrue(canExecute);
+        }
+        [TestMethod]
         public void HavingLookUseCase_WhenExecute_ThenDisplayAllProducts()
         {
             //Arrange
             var mockProductRepository = new Mock<IProductRepository>();
             var mockShelfView = new Mock<IShelfView>();
-            LookUseCase look = new LookUseCase(mockProductRepository.Object, mockShelfView.Object);
+            LookUseCase lookUseCase = new LookUseCase(mockProductRepository.Object, mockShelfView.Object);
 
             var products = new List<Product>
             {
@@ -26,7 +68,7 @@ namespace iQuest.VendingMachineTests
             mockProductRepository.Setup(p => p.GetAll()).Returns(products);
 
             //Act
-            look.Execute();
+            lookUseCase.Execute();
 
             //Assert
             mockShelfView.Verify(s => s.DisplayProducts(products), Times.Once);
