@@ -1,10 +1,11 @@
-﻿using System;
+﻿using iQuest.VendingMachine.Interfaces;
+using System;
 
 namespace iQuest.VendingMachine.UseCases
 {
     internal class LogoutUseCase : IUseCase
     {
-        private readonly VendingMachineApplication application;
+        private readonly IVendingMachineApplication application;
 
         public string Name => "logout";
 
@@ -12,7 +13,7 @@ namespace iQuest.VendingMachine.UseCases
 
         public bool CanExecute => application.UserIsLoggedIn;
 
-        public LogoutUseCase(VendingMachineApplication application)
+        public LogoutUseCase(IVendingMachineApplication application)
         {
             this.application = application ?? throw new ArgumentNullException(nameof(application));
         }

@@ -1,9 +1,10 @@
 ﻿using iQuest.VendingMachine.Entities;
+using iQuest.VendingMachine.Interfaces;
 using System.Collections.Generic;
 
 namespace iQuest.VendingMachine.Repository
 {
-    internal class ProductRepository
+    internal class ProductRepository : IProductRepository
     {
         private static List<Product> products = new List<Product>();
 
@@ -13,7 +14,7 @@ namespace iQuest.VendingMachine.Repository
             apple.ColumnId = 11;
             apple.Name = "Apple";
             apple.Price = 2;
-            apple.Quantity = 1;
+            apple.Quantity = 7;
 
             Product orange = new Product();
             orange.ColumnId = 12;

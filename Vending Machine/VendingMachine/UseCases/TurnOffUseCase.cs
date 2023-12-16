@@ -1,8 +1,10 @@
-﻿namespace iQuest.VendingMachine.UseCases
+﻿using iQuest.VendingMachine.Interfaces;
+
+namespace iQuest.VendingMachine.UseCases
 {
     internal class TurnOffUseCase : IUseCase
     {
-        private readonly VendingMachineApplication application;
+        private readonly IVendingMachineApplication application;
 
         public string Name => "exit";
 
@@ -10,7 +12,7 @@
 
         public bool CanExecute => application.UserIsLoggedIn;
 
-        public TurnOffUseCase(VendingMachineApplication application)
+        public TurnOffUseCase(IVendingMachineApplication application)
         {
             this.application = application;
         }

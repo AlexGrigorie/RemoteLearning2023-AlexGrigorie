@@ -1,0 +1,12 @@
+﻿using iQuest.VendingMachine.Entities;
+using System.Collections.Generic;
+
+namespace iQuest.VendingMachine.Interfaces
+{
+    internal interface IBuyView
+    {
+        public int RequestProduct();
+        public void DispenseProduct(string productName);
+        public int AskForPaymentMethod(IEnumerable<PaymentMethod> paymentMethods);
+    }
+}

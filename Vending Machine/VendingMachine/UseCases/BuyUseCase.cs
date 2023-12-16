@@ -1,27 +1,29 @@
 ﻿using iQuest.VendingMachine.Entities;
 using iQuest.VendingMachine.Exceptions;
 using iQuest.VendingMachine.Helper;
-using iQuest.VendingMachine.PresentationLayer;
-using iQuest.VendingMachine.Repository;
+using iQuest.VendingMachine.Interfaces;
 using System;
 namespace iQuest.VendingMachine.UseCases
 {
     internal class BuyUseCase : IUseCase
     {
-        private readonly VendingMachineApplication application;
-        private readonly BuyView buyView;
-        private readonly ProductRepository productRepository;
+        private readonly IVendingMachineApplication application;
+        private readonly IBuyView buyView;
+        private readonly IProductRepository productRepository;
+        private readonly IPaymentUseCase paymentUseCase;
         public string Name => "buy";
 
         public string Description => "Buy your favourite product";
 
         public bool CanExecute => !application.UserIsLoggedIn;
 
-        public BuyUseCase(VendingMachineApplication application, BuyView buyView, ProductRepository productRepository)
+        public BuyUseCase(IVendingMachineApplication application, IBuyView buyView, 
+            IProductRepository productRepository, IPaymentUseCase paymentUseCase)
         {
             this.application = application ?? throw new ArgumentNullException(nameof(application));
             this.buyView = buyView ?? throw new ArgumentNullException(nameof(buyView));
             this.productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
+            this.paymentUseCase = paymentUseCase ?? throw new ArgumentNullException(nameof(paymentUseCase));
         }
 
         public void Execute()
@@ -37,6 +39,7 @@ namespace iQuest.VendingMachine.UseCases
             }
             if (product.Quantity >= StatusProduct.SufficientStock)
             {
+                paymentUseCase.Execute(product.Price);
                 product.Quantity--;
                 buyView.DispenseProduct(product.Name);
             }

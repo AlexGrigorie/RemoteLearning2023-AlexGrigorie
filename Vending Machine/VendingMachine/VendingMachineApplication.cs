@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using iQuest.VendingMachine.Exceptions;
+using iQuest.VendingMachine.Interfaces;
 using iQuest.VendingMachine.PresentationLayer;
 
 namespace iQuest.VendingMachine
 {
-    internal class VendingMachineApplication
+    internal class VendingMachineApplication : IVendingMachineApplication
     {
         private readonly List<IUseCase> useCases;
         private readonly MainDisplay mainDisplay;
@@ -47,6 +48,18 @@ namespace iQuest.VendingMachine
                     mainDisplay.DisplayExceptionMessage(ex);
                 }
                 catch(InvalidPasswordException ex)
+                {
+                    mainDisplay.DisplayExceptionMessage(ex);
+                }
+                catch(InvalidCardNumberException ex)
+                {
+                    mainDisplay.DisplayExceptionMessage(ex);
+                }
+                catch(InvalidMoneyException ex)
+                {
+                    mainDisplay.DisplayExceptionMessage(ex);
+                }
+                catch(InvalidTypeOfPaymentException ex)
                 {
                     mainDisplay.DisplayExceptionMessage(ex);
                 }
