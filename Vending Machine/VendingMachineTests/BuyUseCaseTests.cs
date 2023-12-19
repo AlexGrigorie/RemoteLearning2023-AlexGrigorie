@@ -9,16 +9,23 @@ namespace VendingMachineTests
     [TestClass]
     public class BuyUseCaseTests
     {
+        private Mock<IProductRepository> mockProductRepository;
+        private Mock<IVendingMachineApplication> mockVendingMachine;
+        private Mock<IBuyView> mockBuyView;
+        private BuyUseCase buyUseCase;
+
+        [TestInitialize]
+        public void SetupTest()
+        {
+            mockProductRepository = new Mock<IProductRepository>();
+            mockVendingMachine = new Mock<IVendingMachineApplication>();
+            mockBuyView = new Mock<IBuyView>();
+            buyUseCase = new BuyUseCase(mockVendingMachine.Object, mockBuyView.Object, mockProductRepository.Object);
+        }
+
         [TestMethod]
         public void HavingBuyUseCase_WhenName_DisplayCorrectValue()
         {
-            //Arrange
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            var mockProductRepository = new Mock<IProductRepository>();
-            var mockBuyView = new Mock<IBuyView>();
-
-            BuyUseCase buyUseCase = new BuyUseCase(mockVendingMachine.Object, mockBuyView.Object, mockProductRepository.Object);
-
             //Act
             string name = buyUseCase.Name;
 
@@ -28,13 +35,6 @@ namespace VendingMachineTests
         [TestMethod]
         public void HavingBuyUseCase_WhenDescription_DisplayCorrectValue()
         {
-            //Arrange
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            var mockProductRepository = new Mock<IProductRepository>();
-            var mockBuyView = new Mock<IBuyView>();
-
-            BuyUseCase buyUseCase = new BuyUseCase(mockVendingMachine.Object, mockBuyView.Object, mockProductRepository.Object);
-
             //Act
             string description = buyUseCase.Description;
 
@@ -45,12 +45,7 @@ namespace VendingMachineTests
         public void HavingBuyUseCase_WhenNoAdminIsLogin_CanExecuteIsTrue()
         {
             //Arrange
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            var mockProductRepository = new Mock<IProductRepository>();
-            var mockBuyView = new Mock<IBuyView>();
-
             mockVendingMachine.SetupProperty(m => m.UserIsLoggedIn, false);
-            BuyUseCase buyUseCase = new BuyUseCase(mockVendingMachine.Object, mockBuyView.Object, mockProductRepository.Object);
 
             //Act
             bool canExecute = buyUseCase.CanExecute;
@@ -62,12 +57,7 @@ namespace VendingMachineTests
         public void HavingBuyUseCase_WhenAdminIsLogin_CanExecuteIsFalse()
         {
             //Arrange
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            var mockProductRepository = new Mock<IProductRepository>();
-            var mockBuyView = new Mock<IBuyView>();
-
             mockVendingMachine.SetupProperty(m => m.UserIsLoggedIn, true);
-            BuyUseCase buyUseCase = new BuyUseCase(mockVendingMachine.Object, mockBuyView.Object, mockProductRepository.Object);
 
             //Act
             bool canExecute = buyUseCase.CanExecute;
@@ -79,11 +69,6 @@ namespace VendingMachineTests
         public void HavingBuyUseCase_WhenExecuteValidProductId_ThenDispenseProduct()
         {
             //Arrange
-            var mockProductRepository = new Mock<IProductRepository>();
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            var mockBuyView = new Mock<IBuyView>();
-
-            BuyUseCase buyUseCase = new BuyUseCase(mockVendingMachine.Object, mockBuyView.Object, mockProductRepository.Object);
             Product apple = new Product { ColumnId = 11, Name = "Apple", Price = 2, Quantity = 1 };
             int decreaseProductQuantity = apple.Quantity - 1;
 
@@ -102,13 +87,7 @@ namespace VendingMachineTests
         public void HavingBuyUseCase_WhenExecuteEmptyString_ThenThrowCancelException()
         {
             //Arrange
-            var mockProductRepository = new Mock<IProductRepository>();
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            var mockBuyView = new Mock<IBuyView>();
-
-            BuyUseCase buyUseCase = new BuyUseCase(mockVendingMachine.Object, mockBuyView.Object, mockProductRepository.Object);
             int productId = 0;
-
             mockBuyView.Setup(b => b.RequestProduct()).Returns(productId);
 
             //Act & Assert
@@ -118,11 +97,6 @@ namespace VendingMachineTests
         public void HavingBuyUseCase_WhenExecuteInvalidColumn_ThenThrowInvalidColumnException()
         {
             //Arrange
-            var mockProductRepository = new Mock<IProductRepository>();
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            var mockBuyView = new Mock<IBuyView>();
-
-            BuyUseCase buyUseCase = new BuyUseCase(mockVendingMachine.Object, mockBuyView.Object, mockProductRepository.Object);
             int productId = 111;
 
             mockBuyView.Setup(b => b.RequestProduct()).Returns(productId);
@@ -137,11 +111,6 @@ namespace VendingMachineTests
         public void HavingBuyUseCase_WhenExecuteInsufficientStock_ThenThrowInsufficientStockException()
         {
             //Arrange
-            var mockProductRepository = new Mock<IProductRepository>();
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            var mockBuyView = new Mock<IBuyView>();
-
-            BuyUseCase buyUseCase = new BuyUseCase(mockVendingMachine.Object, mockBuyView.Object, mockProductRepository.Object);
             Product apple = new Product { ColumnId = 11, Name = "Apple", Price = 2, Quantity = 0 };
 
             mockBuyView.Setup(b => b.RequestProduct()).Returns(apple.ColumnId);

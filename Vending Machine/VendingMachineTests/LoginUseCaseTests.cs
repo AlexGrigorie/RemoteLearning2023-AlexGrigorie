@@ -8,14 +8,20 @@ namespace iQuest.VendingMachineTests
     [TestClass]
     public class LoginUseCaseTests
     {
+        private Mock<IVendingMachineApplication> mockVendingMachine;
+        private Mock<IMainDisplay> mockMainDisplay;
+        private LoginUseCase loginUseCase;
+
+        [TestInitialize]
+        public void SetupTest()
+        {
+            mockVendingMachine = new Mock<IVendingMachineApplication>();
+            mockMainDisplay = new Mock<IMainDisplay>();
+            loginUseCase = new LoginUseCase(mockVendingMachine.Object, mockMainDisplay.Object);
+        }
         [TestMethod]
         public void HavingLoginUseCase_WhenName_DisplayCorrectValue()
         {
-            //Arrange
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            var mockMainDisplay = new Mock<IMainDisplay>();
-            LoginUseCase loginUseCase = new LoginUseCase(mockVendingMachine.Object, mockMainDisplay.Object);
-
             //Act
             string name = loginUseCase.Name;
 
@@ -25,11 +31,6 @@ namespace iQuest.VendingMachineTests
         [TestMethod]
         public void HavingLoginUseCase_WhenDescription_DisplayCorrectValue()
         {
-            //Arrange
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            var mockMainDisplay = new Mock<IMainDisplay>();
-            LoginUseCase loginUseCase = new LoginUseCase(mockVendingMachine.Object, mockMainDisplay.Object);
-
             //Act
             string name = loginUseCase.Description;
 
@@ -40,9 +41,6 @@ namespace iQuest.VendingMachineTests
         public void HavingLoginUseCase_WhenNoAdmin_CanExecuteIsTrue()
         {
             //Arrange
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            var mockMainDisplay = new Mock<IMainDisplay>();
-            LoginUseCase loginUseCase = new LoginUseCase(mockVendingMachine.Object, mockMainDisplay.Object);
             mockVendingMachine.SetupProperty(m => m.UserIsLoggedIn, false);
 
             //Act
@@ -55,9 +53,6 @@ namespace iQuest.VendingMachineTests
         public void HavingLoginUseCase_WhenAdminIsLoggedIn_CanExecuteIsFalse()
         {
             //Arrange
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            var mockMainDisplay = new Mock<IMainDisplay>();
-            LoginUseCase loginUseCase = new LoginUseCase(mockVendingMachine.Object, mockMainDisplay.Object);
             mockVendingMachine.SetupProperty(m => m.UserIsLoggedIn, true);
 
             //Act
@@ -71,10 +66,6 @@ namespace iQuest.VendingMachineTests
         {
             //Arrange
             string password = "supercalifragilisticexpialidocious";
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            var mockMainDisplay = new Mock<IMainDisplay>();
-            LoginUseCase loginUseCase = new LoginUseCase(mockVendingMachine.Object, mockMainDisplay.Object);
-
             mockMainDisplay.Setup(m => m.AskForPassword()).Returns(password);
             mockVendingMachine.Setup(x => x.UserIsLoggedIn).Returns(true);
 
@@ -90,10 +81,6 @@ namespace iQuest.VendingMachineTests
         {
             //Arrange
             string password = "supercalifragilisticexpialidocious_test";
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            var mockMainDisplay = new Mock<IMainDisplay>();
-            LoginUseCase loginUseCase = new LoginUseCase(mockVendingMachine.Object, mockMainDisplay.Object);
-
             mockMainDisplay.Setup(m => m.AskForPassword()).Returns(password);
             mockVendingMachine.Setup(x => x.UserIsLoggedIn).Returns(false);
 

@@ -8,14 +8,20 @@ namespace iQuest.VendingMachineTests
     [TestClass]
     public class LookUseCaseTests
     {
+        private Mock<IProductRepository> mockProductRepository;
+        private Mock<IShelfView> mockShelfView;
+        private LookUseCase lookUseCase;
+
+        [TestInitialize]
+        public void SetupTest()
+        {
+            mockProductRepository = new Mock<IProductRepository>();
+            mockShelfView = new Mock<IShelfView>();
+            lookUseCase = new LookUseCase(mockProductRepository.Object, mockShelfView.Object);
+        }
         [TestMethod]
         public void HavingLookUseCase_WhenName_DisplayCorrectValue()
         {
-            //Arrange
-            var mockProductRepository = new Mock<IProductRepository>();
-            var mockShelfView = new Mock<IShelfView>();
-            LookUseCase lookUseCase = new LookUseCase(mockProductRepository.Object, mockShelfView.Object);
-
             //Act
             string name = lookUseCase.Name;
 
@@ -25,11 +31,6 @@ namespace iQuest.VendingMachineTests
         [TestMethod]
         public void HavingLookUseCase_WhenDescription_DisplayCorrectValue()
         {
-            //Arrange
-            var mockProductRepository = new Mock<IProductRepository>();
-            var mockShelfView = new Mock<IShelfView>();
-            LookUseCase lookUseCase = new LookUseCase(mockProductRepository.Object, mockShelfView.Object);
-
             //Act
             string description = lookUseCase.Description;
 
@@ -39,11 +40,6 @@ namespace iQuest.VendingMachineTests
         [TestMethod]
         public void HavingLookUseCase_WhenAnyone_CanExecuteIsTrue()
         {
-            //Arrange
-            var mockProductRepository = new Mock<IProductRepository>();
-            var mockShelfView = new Mock<IShelfView>();
-            LookUseCase lookUseCase = new LookUseCase(mockProductRepository.Object, mockShelfView.Object);
-
             //Act
             bool canExecute = lookUseCase.CanExecute;
 
@@ -54,10 +50,6 @@ namespace iQuest.VendingMachineTests
         public void HavingLookUseCase_WhenExecute_ThenDisplayAllProducts()
         {
             //Arrange
-            var mockProductRepository = new Mock<IProductRepository>();
-            var mockShelfView = new Mock<IShelfView>();
-            LookUseCase lookUseCase = new LookUseCase(mockProductRepository.Object, mockShelfView.Object);
-
             var products = new List<Product>
             {
                 new Product {ColumnId = 11, Name= "Grape", Price = 2.99f, Quantity = 12 },

@@ -7,13 +7,18 @@ namespace iQuest.VendingMachineTests
     [TestClass]
     public class TurnOffUseCaseTests
     {
+        private Mock<IVendingMachineApplication> mockVendingMachine;
+        private TurnOffUseCase turnOffUseCase;
+
+        [TestInitialize]
+        public void SetupTest()
+        {
+            mockVendingMachine = new Mock<IVendingMachineApplication>();
+            turnOffUseCase = new TurnOffUseCase(mockVendingMachine.Object);
+        }
         [TestMethod]
         public void HavingTurnOffUseCase_WhenName_DisplayCorrectValue()
         {
-            //Arrange
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            TurnOffUseCase turnOffUseCase = new TurnOffUseCase(mockVendingMachine.Object);
-
             //Act
             string name = turnOffUseCase.Name;
 
@@ -23,10 +28,6 @@ namespace iQuest.VendingMachineTests
         [TestMethod]
         public void HavingTurnOffUseCase_WhenDescription_DisplayCorrectValue()
         {
-            //Arrange
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            TurnOffUseCase turnOffUseCase = new TurnOffUseCase(mockVendingMachine.Object);
-
             //Act
             string description = turnOffUseCase.Description;
 
@@ -37,8 +38,6 @@ namespace iQuest.VendingMachineTests
         public void HavingTurnOffUseCase_WhenNoAdmin_CanExecuteIsFalse()
         {
             //Arrange
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            TurnOffUseCase turnOffUseCase = new TurnOffUseCase(mockVendingMachine.Object);
             mockVendingMachine.SetupProperty(m => m.UserIsLoggedIn, false);
 
             //Act
@@ -51,8 +50,6 @@ namespace iQuest.VendingMachineTests
         public void HavingTurnOffUseCase_WhenAdminIsLoggedIn_CanExecuteIsTrue()
         {
             //Arrange
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            TurnOffUseCase turnOffUseCase = new TurnOffUseCase(mockVendingMachine.Object);
             mockVendingMachine.SetupProperty(m => m.UserIsLoggedIn, true);
 
             //Act
@@ -64,10 +61,6 @@ namespace iQuest.VendingMachineTests
         [TestMethod]
         public void HavingTurnOffUseCase_WhenExecute_ThenStopApplication()
         {
-            //Arrange
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            TurnOffUseCase turnOffUseCase = new TurnOffUseCase(mockVendingMachine.Object);
-
             //Act
             turnOffUseCase.Execute();
 

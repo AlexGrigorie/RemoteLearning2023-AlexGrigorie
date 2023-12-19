@@ -7,13 +7,18 @@ namespace iQuest.VendingMachineTests
     [TestClass]
     public class LogoutUseCaseTests
     {
+        private Mock<IVendingMachineApplication> mockVendingMachine;
+        private LogoutUseCase logoutUseCase;
+
+        [TestInitialize]
+        public void SetupTest()
+        {
+            mockVendingMachine = new Mock<IVendingMachineApplication>();
+            logoutUseCase = new LogoutUseCase(mockVendingMachine.Object);
+        }
         [TestMethod]
         public void HavingLogoutUseCase_WhenName_DisplayCorrectValue()
         {
-            //Arrange
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            LogoutUseCase logoutUseCase = new LogoutUseCase(mockVendingMachine.Object);
-
             //Act
             string name = logoutUseCase.Name;
 
@@ -23,10 +28,6 @@ namespace iQuest.VendingMachineTests
         [TestMethod]
         public void HavingLogoutUseCase_WhenDescription_DisplayCorrectValue()
         {
-            //Arrange
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            LogoutUseCase logoutUseCase = new LogoutUseCase(mockVendingMachine.Object);
-
             //Act
             string description = logoutUseCase.Description;
 
@@ -37,8 +38,6 @@ namespace iQuest.VendingMachineTests
         public void HavingLogoutUseCase_WhenNoAdmin_CanExecuteIsFalse()
         {
             //Arrange
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            LogoutUseCase logoutUseCase = new LogoutUseCase(mockVendingMachine.Object);
             mockVendingMachine.SetupProperty(m => m.UserIsLoggedIn, false);
 
             //Act
@@ -51,8 +50,6 @@ namespace iQuest.VendingMachineTests
         public void HavingLogoutUseCase_WhenAdminIsLoggedIn_CanExecuteIsTrue()
         {
             //Arrange
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            LogoutUseCase logoutUseCase = new LogoutUseCase(mockVendingMachine.Object);
             mockVendingMachine.SetupProperty(m => m.UserIsLoggedIn, true);
 
             //Act
@@ -64,10 +61,6 @@ namespace iQuest.VendingMachineTests
         [TestMethod]
         public void HavingLogoutUseCase_WhenExecute_ThenSetUserIsLoggedInToFalse()
         {
-            //Arrange
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            LogoutUseCase logoutUseCase = new LogoutUseCase(mockVendingMachine.Object);
-
             //Act
             logoutUseCase.Execute();
 
