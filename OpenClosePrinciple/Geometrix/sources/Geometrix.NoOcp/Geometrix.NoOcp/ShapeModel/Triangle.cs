@@ -2,8 +2,8 @@
 {
     internal class Triangle
     {
-        public int LengthA { get; set; }
-        public int LengthB { get; set; }
-        public int LengthC { get; set; }
+        public double LengthA { get; set; }
+        public double LengthB { get; set; }
+        public double LengthC { get; set; }
     }
 }
