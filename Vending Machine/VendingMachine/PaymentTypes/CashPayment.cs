@@ -9,7 +9,7 @@ namespace iQuest.VendingMachine.PaymentTypes
     {
         public string Name => "Cash";
         private readonly ICashPaymentTerminal cashPaymentTerminal;
-        private readonly List<float> acceptedCoinsAndBanknotes = new List<float> {0.5f, 1, 5, 10, 50 };
+        private readonly List<float> acceptedCoinsAndBanknotes = new List<float> { 0.5f, 1, 5, 10, 50 };
 
         public CashPayment(ICashPaymentTerminal cashPaymentTerminal)
         {
@@ -19,12 +19,20 @@ namespace iQuest.VendingMachine.PaymentTypes
         {
             float addedAmount = 0;
 
-            while(addedAmount < price)
+            while (addedAmount < price)
             {
                 float money = cashPaymentTerminal.AskForMoney();
-                if(acceptedCoinsAndBanknotes.Contains(money))
+                if (acceptedCoinsAndBanknotes.Contains(money))
                 {
                     addedAmount += money;
+                }
+                else if (money == 0)
+                {
+                    if (addedAmount > 0)
+                    {
+                        cashPaymentTerminal.GiveBackChange(addedAmount);
+                    }
+                    throw new CancelException();
                 }
                 else
                 {
@@ -32,7 +40,7 @@ namespace iQuest.VendingMachine.PaymentTypes
                 }
             }
 
-            if(addedAmount > price)
+            if (addedAmount > price)
             {
                 cashPaymentTerminal.GiveBackChange(addedAmount - price);
             }

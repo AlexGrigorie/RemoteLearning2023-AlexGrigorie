@@ -12,5 +12,10 @@ namespace iQuest.VendingMachine.PresentationLayer
             string cardNumber = Console.ReadLine();
             return cardNumber;
         }
+
+        public void ThanksForThePayment()
+        {
+            Console.WriteLine("Thank you for your payment!\n");
+        }
     }
 }

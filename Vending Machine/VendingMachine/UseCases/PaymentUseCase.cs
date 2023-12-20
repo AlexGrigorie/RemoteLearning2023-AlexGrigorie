@@ -8,10 +8,6 @@ namespace iQuest.VendingMachine.UseCases
 {
     internal class PaymentUseCase : IPaymentUseCase
     {
-        public string Name => "Payment";
-        public string Description => "Collect money from user";
-        public bool CanExecute => true;
-
         private List<IPaymentAlgorithm> paymentAlgorithms;
         private readonly IBuyView buyView;
 
@@ -36,7 +32,7 @@ namespace iQuest.VendingMachine.UseCases
 
         private IPaymentAlgorithm SelectedPaymentMethodByUser()
         {
-            var paymentMethods = SetPaymentsMethods();
+            var paymentMethods = GetSelectedPaymentMethod();
             var getIdForPaymentMethod = buyView.AskForPaymentMethod(paymentMethods);
             foreach (var paymentMethod in paymentMethods)
             {
@@ -48,7 +44,7 @@ namespace iQuest.VendingMachine.UseCases
             return null;
         }
 
-        private List<PaymentMethod> SetPaymentsMethods()
+        private List<PaymentMethod> GetSelectedPaymentMethod()
         {
             List<PaymentMethod> paymentMethods = new List<PaymentMethod>();
             int paymentId = 0;
