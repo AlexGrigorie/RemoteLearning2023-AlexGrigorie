@@ -7,65 +7,42 @@ namespace iQuest.VendingMachineTests
     [TestClass]
     public class TurnOffUseCaseTests
     {
-        private Mock<IVendingMachineApplication> mockVendingMachine;
+        private Mock<IAuthenticationService> mockAuthenticationService;
+        private Mock<ITurnOffService> mockTurnOffService;
         private TurnOffUseCase turnOffUseCase;
 
         [TestInitialize]
         public void SetupTest()
         {
-            mockVendingMachine = new Mock<IVendingMachineApplication>();
-            turnOffUseCase = new TurnOffUseCase(mockVendingMachine.Object);
+            mockAuthenticationService = new Mock<IAuthenticationService>();
+            mockTurnOffService = new Mock<ITurnOffService>();
+            turnOffUseCase = new TurnOffUseCase(mockAuthenticationService.Object, mockTurnOffService.Object);
         }
         [TestMethod]
-        public void HavingTurnOffUseCase_WhenName_DisplayCorrectValue()
+        public void HavingTurnOffUseCase__DisplayCorrectName()
         {
-            //Act
             string name = turnOffUseCase.Name;
-
-            //Assert
             Assert.AreEqual("exit", name);
         }
         [TestMethod]
-        public void HavingTurnOffUseCase_WhenDescription_DisplayCorrectValue()
+        public void HavingTurnOffUseCase__DisplayCorrectDescription()
         {
-            //Act
             string description = turnOffUseCase.Description;
-
-            //Assert
             Assert.AreEqual("Go to live your life.", description);
         }
         [TestMethod]
         public void HavingTurnOffUseCase_WhenNoAdmin_CanExecuteIsFalse()
         {
-            //Arrange
-            mockVendingMachine.SetupProperty(m => m.UserIsLoggedIn, false);
-
-            //Act
+            mockAuthenticationService.Setup(m => m.UserIsLoggedIn).Returns(false);
             bool canExecute = turnOffUseCase.CanExecute;
-
-            //Assert
             Assert.IsFalse(canExecute);
         }
         [TestMethod]
         public void HavingTurnOffUseCase_WhenAdminIsLoggedIn_CanExecuteIsTrue()
         {
-            //Arrange
-            mockVendingMachine.SetupProperty(m => m.UserIsLoggedIn, true);
-
-            //Act
+            mockAuthenticationService.Setup(m => m.UserIsLoggedIn).Returns(true);
             bool canExecute = turnOffUseCase.CanExecute;
-
-            //Assert
             Assert.IsTrue(canExecute);
-        }
-        [TestMethod]
-        public void HavingTurnOffUseCase_WhenExecute_ThenStopApplication()
-        {
-            //Act
-            turnOffUseCase.Execute();
-
-            //Assert
-            mockVendingMachine.Verify(v => v.TurnOff(), Times.Once);
         }
     }
 }

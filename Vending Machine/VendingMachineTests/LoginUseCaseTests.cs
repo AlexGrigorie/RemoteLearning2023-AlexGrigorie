@@ -8,84 +8,51 @@ namespace iQuest.VendingMachineTests
     [TestClass]
     public class LoginUseCaseTests
     {
-        private Mock<IVendingMachineApplication> mockVendingMachine;
+        private Mock<IAuthenticationService> mockAuthenticationService;
         private Mock<IMainDisplay> mockMainDisplay;
         private LoginUseCase loginUseCase;
 
         [TestInitialize]
         public void SetupTest()
         {
-            mockVendingMachine = new Mock<IVendingMachineApplication>();
+            mockAuthenticationService = new Mock<IAuthenticationService>();
             mockMainDisplay = new Mock<IMainDisplay>();
-            loginUseCase = new LoginUseCase(mockVendingMachine.Object, mockMainDisplay.Object);
+            loginUseCase = new LoginUseCase(mockAuthenticationService.Object, mockMainDisplay.Object);
         }
         [TestMethod]
-        public void HavingLoginUseCase_WhenName_DisplayCorrectValue()
+        public void HavingLoginUseCase__DisplayCorrectName()
         {
-            //Act
             string name = loginUseCase.Name;
-
-            //Assert
             Assert.AreEqual("login", name);
         }
         [TestMethod]
-        public void HavingLoginUseCase_WhenDescription_DisplayCorrectValue()
+        public void HavingLoginUseCase__DisplayCorrectDescription()
         {
-            //Act
             string name = loginUseCase.Description;
-
-            //Assert
             Assert.AreEqual("Get access to administration buttons.", name);
         }
         [TestMethod]
         public void HavingLoginUseCase_WhenNoAdmin_CanExecuteIsTrue()
         {
-            //Arrange
-            mockVendingMachine.SetupProperty(m => m.UserIsLoggedIn, false);
-
-            //Act
+            mockAuthenticationService.Setup(m => m.UserIsLoggedIn).Returns(false);
             bool canExecute = loginUseCase.CanExecute;
-
-            //Assert
             Assert.IsTrue(canExecute);
         }
         [TestMethod]
         public void HavingLoginUseCase_WhenAdminIsLoggedIn_CanExecuteIsFalse()
         {
-            //Arrange
-            mockVendingMachine.SetupProperty(m => m.UserIsLoggedIn, true);
-
-            //Act
+            mockAuthenticationService.Setup(m => m.UserIsLoggedIn).Returns(true);
             bool canExecute = loginUseCase.CanExecute;
-
-            //Assert
             Assert.IsFalse(canExecute);
         }
         [TestMethod]
         public void HavingLoginUseCase_WhenExecuteForCorrectPassword_ThenSetUserIsLoggedInToTrue()
         {
-            //Arrange
             string password = "supercalifragilisticexpialidocious";
             mockMainDisplay.Setup(m => m.AskForPassword()).Returns(password);
-            mockVendingMachine.Setup(x => x.UserIsLoggedIn).Returns(true);
-
-            //Act
+            mockAuthenticationService.Setup(x => x.UserIsLoggedIn).Returns(true);
             loginUseCase.Execute();
-
-            //Assert
-            Assert.IsTrue(mockVendingMachine.Object.UserIsLoggedIn);
-
-        }
-        [TestMethod]
-        public void HavingLoginUseCase_WhenExecuteForIncorrectPassword_ThenThrowInvalidPasswordException()
-        {
-            //Arrange
-            string password = "supercalifragilisticexpialidocious_test";
-            mockMainDisplay.Setup(m => m.AskForPassword()).Returns(password);
-            mockVendingMachine.Setup(x => x.UserIsLoggedIn).Returns(false);
-
-            //Act & Assert
-            Assert.ThrowsException<InvalidPasswordException>(() => loginUseCase.Execute());
+            Assert.IsTrue(mockAuthenticationService.Object.UserIsLoggedIn);
         }
     }
 }

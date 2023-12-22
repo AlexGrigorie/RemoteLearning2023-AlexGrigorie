@@ -14,7 +14,7 @@ namespace iQuest.VendingMachine.Repository
             apple.ColumnId = 11;
             apple.Name = "Apple";
             apple.Price = 2;
-            apple.Quantity = 0;
+            apple.Quantity = 1;
 
             Product orange = new Product();
             orange.ColumnId = 12;

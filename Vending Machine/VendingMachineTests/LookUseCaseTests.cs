@@ -20,36 +20,26 @@ namespace iQuest.VendingMachineTests
             lookUseCase = new LookUseCase(mockProductRepository.Object, mockShelfView.Object);
         }
         [TestMethod]
-        public void HavingLookUseCase_WhenName_DisplayCorrectValue()
+        public void HavingLookUseCase__DisplayCorrectName()
         {
-            //Act
             string name = lookUseCase.Name;
-
-            //Assert
             Assert.AreEqual("look", name);
         }
         [TestMethod]
-        public void HavingLookUseCase_WhenDescription_DisplayCorrectValue()
+        public void HavingLookUseCase__DisplayCorrectDescription()
         {
-            //Act
             string description = lookUseCase.Description;
-
-            //Assert
             Assert.AreEqual("Display all available products.", description);
         }
         [TestMethod]
         public void HavingLookUseCase_WhenAnyone_CanExecuteIsTrue()
         {
-            //Act
             bool canExecute = lookUseCase.CanExecute;
-
-            //Assert
             Assert.IsTrue(canExecute);
         }
         [TestMethod]
         public void HavingLookUseCase_WhenExecute_ThenDisplayAllProducts()
         {
-            //Arrange
             var products = new List<Product>
             {
                 new Product {ColumnId = 11, Name= "Grape", Price = 2.99f, Quantity = 12 },
@@ -58,11 +48,7 @@ namespace iQuest.VendingMachineTests
 
             };
             mockProductRepository.Setup(p => p.GetAll()).Returns(products);
-
-            //Act
             lookUseCase.Execute();
-
-            //Assert
             mockShelfView.Verify(s => s.DisplayProducts(products), Times.Once);
         }
     }

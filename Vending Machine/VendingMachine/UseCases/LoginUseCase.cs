@@ -6,29 +6,25 @@ namespace iQuest.VendingMachine.UseCases
 {
     internal class LoginUseCase : IUseCase
     {
-        private readonly IVendingMachineApplication application;
+        private readonly IAuthenticationService authenticationService;
         private readonly IMainDisplay mainDisplay;
 
         public string Name => "login";
 
         public string Description => "Get access to administration buttons.";
 
-        public bool CanExecute => !application.UserIsLoggedIn;
+        public bool CanExecute => !authenticationService.UserIsLoggedIn;
 
-        public LoginUseCase(IVendingMachineApplication application, IMainDisplay mainDisplay)
+        public LoginUseCase(IAuthenticationService authenticationService, IMainDisplay mainDisplay)
         {
-            this.application = application ?? throw new ArgumentNullException(nameof(application));
+            this.authenticationService = authenticationService ?? throw new ArgumentNullException(nameof(authenticationService));
             this.mainDisplay = mainDisplay ?? throw new ArgumentNullException(nameof(mainDisplay));
         }
 
         public void Execute()
         {
             string password = mainDisplay.AskForPassword();
-
-                if (password == "supercalifragilisticexpialidocious")
-                    application.UserIsLoggedIn = true;
-                else
-                    throw new InvalidPasswordException();
+            authenticationService.Login(password);
         }
     }
 }

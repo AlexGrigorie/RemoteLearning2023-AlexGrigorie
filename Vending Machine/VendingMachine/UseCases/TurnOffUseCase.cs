@@ -4,22 +4,24 @@ namespace iQuest.VendingMachine.UseCases
 {
     internal class TurnOffUseCase : IUseCase
     {
-        private readonly IVendingMachineApplication application;
+        private readonly ITurnOffService turnOffService;
+        private readonly IAuthenticationService authenticationService;
 
         public string Name => "exit";
 
         public string Description => "Go to live your life.";
 
-        public bool CanExecute => application.UserIsLoggedIn;
+        public bool CanExecute => authenticationService.UserIsLoggedIn;
 
-        public TurnOffUseCase(IVendingMachineApplication application)
+        public TurnOffUseCase(IAuthenticationService authenticationService, ITurnOffService turnOffService)
         {
-            this.application = application;
+            this.authenticationService = authenticationService;
+            this.turnOffService = turnOffService;
         }
 
         public void Execute()
         {
-            application.TurnOff();
+           turnOffService.TurnOff();
         }
     }
 }
