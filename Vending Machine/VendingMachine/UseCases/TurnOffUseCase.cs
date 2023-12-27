@@ -11,7 +11,7 @@ namespace iQuest.VendingMachine.UseCases
 
         public string Description => "Go to live your life.";
 
-        public bool CanExecute => authenticationService.UserIsLoggedIn;
+        public bool CanExecute => authenticationService.IsUserLoggedIn;
 
         public TurnOffUseCase(IAuthenticationService authenticationService, ITurnOffService turnOffService)
         {

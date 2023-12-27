@@ -2,7 +2,7 @@
 {
     internal interface ITurnOffService
     {
-        public bool TurnOffWasRequested { get; }
+        public bool WasTurnOffRequested { get; }
         public void TurnOff();
     }
 }

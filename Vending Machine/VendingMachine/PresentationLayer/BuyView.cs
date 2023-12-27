@@ -1,5 +1,4 @@
 ﻿using iQuest.VendingMachine.Exceptions;
-using iQuest.VendingMachine.Helper;
 using iQuest.VendingMachine.Interfaces;
 using System;
 

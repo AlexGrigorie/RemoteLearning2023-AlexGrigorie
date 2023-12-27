@@ -2,7 +2,7 @@
 {
     internal interface IAuthenticationService
     {
-        public bool UserIsLoggedIn { get; }
+        public bool IsUserLoggedIn { get; }
         public void Login(string password);
         public void Logout();
     }

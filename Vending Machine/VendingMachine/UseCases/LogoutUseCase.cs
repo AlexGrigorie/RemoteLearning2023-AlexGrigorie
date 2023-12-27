@@ -11,7 +11,7 @@ namespace iQuest.VendingMachine.UseCases
 
         public string Description => "Restrict access to administration buttons.";
 
-        public bool CanExecute => authenticationService.UserIsLoggedIn;
+        public bool CanExecute => authenticationService.IsUserLoggedIn;
 
         public LogoutUseCase(IAuthenticationService authenticationService)
         {

@@ -14,7 +14,7 @@ namespace iQuest.VendingMachine.UseCases
 
         public string Description => "Buy your favourite product";
 
-        public bool CanExecute => !authenticationService.UserIsLoggedIn;
+        public bool CanExecute => !authenticationService.IsUserLoggedIn;
 
         public BuyUseCase(IAuthenticationService authenticationService, IBuyView buyView, IProductRepository productRepository)
         {

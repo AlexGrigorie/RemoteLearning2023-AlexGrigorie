@@ -5,12 +5,12 @@ namespace iQuest.VendingMachine.Authentication
 {
     internal class AuthenticationService : IAuthenticationService
     {
-        public bool UserIsLoggedIn { get; private set; }
+        public bool IsUserLoggedIn { get; private set; }
 
         public void Login(string password)
         {
             if (password == "supercalifragilisticexpialidocious")
-                UserIsLoggedIn = true;
+                IsUserLoggedIn = true;
             else
                 throw new InvalidPasswordException();
 
@@ -18,7 +18,7 @@ namespace iQuest.VendingMachine.Authentication
 
         public void Logout()
         {
-            UserIsLoggedIn = false;
+            IsUserLoggedIn = false;
         }
     }
 }

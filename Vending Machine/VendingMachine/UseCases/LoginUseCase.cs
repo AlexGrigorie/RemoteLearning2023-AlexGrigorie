@@ -13,7 +13,7 @@ namespace iQuest.VendingMachine.UseCases
 
         public string Description => "Get access to administration buttons.";
 
-        public bool CanExecute => !authenticationService.UserIsLoggedIn;
+        public bool CanExecute => !authenticationService.IsUserLoggedIn;
 
         public LoginUseCase(IAuthenticationService authenticationService, IMainDisplay mainDisplay)
         {

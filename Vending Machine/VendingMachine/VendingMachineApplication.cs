@@ -1,5 +1,6 @@
 ﻿using iQuest.VendingMachine.Exceptions;
 using iQuest.VendingMachine.Interfaces;
+using iQuest.VendingMachine.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace iQuest.VendingMachine
 
         public void Run()
         {
-            while (!turnOffService.TurnOffWasRequested)
+            while (!turnOffService.WasTurnOffRequested)
             {
                 try
                 {
