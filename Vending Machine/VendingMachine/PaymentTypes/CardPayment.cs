@@ -16,18 +16,11 @@ namespace iQuest.VendingMachine.PaymentTypes
         public void Run(float price)
         {
             string inputUser = cardPaymentTerminal.AskForCardNumber();
-            if (string.IsNullOrEmpty(inputUser))
-            {
-                throw new CancelException();
-            }
-            else if (CardManager.CardValidator(inputUser))
-            {
-                cardPaymentTerminal.ThanksForThePayment();
-            }
-            else
+            if (!CardManager.CardValidator(inputUser))
             {
                 throw new InvalidCardNumberException();
             }
+            cardPaymentTerminal.ThanksForThePayment();
         }
 
     }

@@ -1,4 +1,4 @@
-﻿using iQuest.VendingMachine.Entities;
+using iQuest.VendingMachine.Entities;
 using System.Collections.Generic;
 
 namespace iQuest.VendingMachine.Interfaces

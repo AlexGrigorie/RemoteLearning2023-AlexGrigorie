@@ -8,44 +8,33 @@ namespace iQuest.VendingMachineTests.TestsForPaymentTypes
     [TestClass]
     public class CashPaymentTests
     {
-        [TestMethod]
-        public void HavingCashPayment_WhenName_DisplayCorrectValue()
+        private Mock<ICashPaymentTerminal> mockCashPaymentTerminal;
+        private CashPayment cashPayment;
+
+        [TestInitialize]
+        public void SetupTest()
         {
-            //Arrange
-            var mockCashPaymentTerminal = new Mock<ICashPaymentTerminal>();
-            CashPayment cashPayment = new CashPayment(mockCashPaymentTerminal.Object);
+            mockCashPaymentTerminal = new Mock<ICashPaymentTerminal>();
+            cashPayment = new CashPayment(mockCashPaymentTerminal.Object);
+        }
+        [TestMethod]
+        public void HavingCashPayment_WhenName_DisplayCorrectName()
+        {
             mockCashPaymentTerminal.Setup(m => m.AskForMoney()).Returns(2);
-
-            //Act
             string name = cashPayment.Name;
-
-            //Assert
             Assert.AreEqual("Cash", name);
         }
-
         [TestMethod]
         public void HavingCashPayment_WhenRun_GiveChangeToUser()
         {
-            //Arrange
-            var mockCashPaymentTerminal = new Mock<ICashPaymentTerminal>();
-            CashPayment cashPayment = new CashPayment(mockCashPaymentTerminal.Object);
             mockCashPaymentTerminal.Setup(m => m.AskForMoney()).Returns(10);
-
-            //Act
             cashPayment.Run(2);
-
-            //Assert
             mockCashPaymentTerminal.Verify(m => m.GiveBackChange(8), Times.Once());
         }
         [TestMethod]
         public void HavingCashPayment_WhenRun_ThrowInvalidMoneyException()
         {
-            //Arrange
-            var mockCashPaymentTerminal = new Mock<ICashPaymentTerminal>();
-            CashPayment cashPayment = new CashPayment(mockCashPaymentTerminal.Object);
             mockCashPaymentTerminal.Setup(m => m.AskForMoney()).Returns(100);
-
-            //Act & Assert
             Assert.ThrowsException<InvalidMoneyException>(() => cashPayment.Run(2));
         }
     }

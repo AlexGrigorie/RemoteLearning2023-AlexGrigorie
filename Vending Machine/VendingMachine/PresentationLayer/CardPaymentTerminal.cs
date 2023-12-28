@@ -1,4 +1,5 @@
-﻿using iQuest.VendingMachine.Interfaces;
+﻿using iQuest.VendingMachine.Exceptions;
+using iQuest.VendingMachine.Interfaces;
 using System;
 
 namespace iQuest.VendingMachine.PresentationLayer
@@ -10,6 +11,10 @@ namespace iQuest.VendingMachine.PresentationLayer
         {
             Display(askForMoney, ConsoleColor.Cyan);
             string cardNumber = Console.ReadLine();
+            if (string.IsNullOrEmpty(cardNumber))
+            {
+                throw new CancelException();
+            }
             return cardNumber;
         }
 

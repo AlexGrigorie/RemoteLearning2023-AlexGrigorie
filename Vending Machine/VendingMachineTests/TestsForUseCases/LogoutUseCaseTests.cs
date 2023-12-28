@@ -7,73 +7,46 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
     [TestClass]
     public class LogoutUseCaseTests
     {
-        [TestMethod]
-        public void HavingLogoutUseCase_WhenName_DisplayCorrectValue()
+        private Mock<IAuthenticationService> mockAuthenticationService;
+        private LogoutUseCase logoutUseCase;
+
+        [TestInitialize]
+        public void SetupTest()
         {
-            //Arrange
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            LogoutUseCase logoutUseCase = new LogoutUseCase(mockVendingMachine.Object);
-
-            //Act
+            mockAuthenticationService = new Mock<IAuthenticationService>();
+            logoutUseCase = new LogoutUseCase(mockAuthenticationService.Object);
+        }
+        [TestMethod]
+        public void HavingLogoutUseCase__DisplayCorrectName()
+        {
             string name = logoutUseCase.Name;
-
-            //Assert
             Assert.AreEqual("logout", name);
         }
         [TestMethod]
-        public void HavingLogoutUseCase_WhenDescription_DisplayCorrectValue()
+        public void HavingLogoutUseCase__DisplayCorrectDescription()
         {
-            //Arrange
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            LogoutUseCase logoutUseCase = new LogoutUseCase(mockVendingMachine.Object);
-
-            //Act
             string description = logoutUseCase.Description;
-
-            //Assert
             Assert.AreEqual("Restrict access to administration buttons.", description);
         }
         [TestMethod]
         public void HavingLogoutUseCase_WhenNoAdmin_CanExecuteIsFalse()
         {
-            //Arrange
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            LogoutUseCase logoutUseCase = new LogoutUseCase(mockVendingMachine.Object);
-            mockVendingMachine.SetupProperty(m => m.UserIsLoggedIn, false);
-
-            //Act
+            mockAuthenticationService.Setup(m => m.IsUserLoggedIn).Returns(false);
             bool canExecute = logoutUseCase.CanExecute;
-
-            //Assert
             Assert.IsFalse(canExecute);
         }
         [TestMethod]
         public void HavingLogoutUseCase_WhenAdminIsLoggedIn_CanExecuteIsTrue()
         {
-            //Arrange
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            LogoutUseCase logoutUseCase = new LogoutUseCase(mockVendingMachine.Object);
-            mockVendingMachine.SetupProperty(m => m.UserIsLoggedIn, true);
-
-            //Act
+            mockAuthenticationService.Setup(m => m.IsUserLoggedIn).Returns(true);
             bool canExecute = logoutUseCase.CanExecute;
-
-            //Assert
             Assert.IsTrue(canExecute);
         }
         [TestMethod]
         public void HavingLogoutUseCase_WhenExecute_ThenSetUserIsLoggedInToFalse()
         {
-            //Arrange
-            var mockVendingMachine = new Mock<IVendingMachineApplication>();
-            LogoutUseCase logoutUseCase = new LogoutUseCase(mockVendingMachine.Object);
-
-            //Act
             logoutUseCase.Execute();
-
-            //Assert
-            bool isLougout = mockVendingMachine.Object.UserIsLoggedIn;
-
+            bool isLougout = mockAuthenticationService.Object.IsUserLoggedIn;
             Assert.IsFalse(isLougout);
         }
     }

@@ -22,24 +22,13 @@ namespace iQuest.VendingMachine.PaymentTypes
             while (addedAmount < price)
             {
                 float money = cashPaymentTerminal.AskForMoney();
-                if (acceptedCoinsAndBanknotes.Contains(money))
+                if (!acceptedCoinsAndBanknotes.Contains(money))
                 {
-                    addedAmount += money;
-                }
-                else if (money == 0)
-                {
-                    if (addedAmount > 0)
-                    {
-                        cashPaymentTerminal.GiveBackChange(addedAmount);
-                    }
-                    throw new CancelException();
-                }
-                else
-                {
+                    cashPaymentTerminal.GiveBackChange(addedAmount);
                     throw new InvalidMoneyException();
                 }
+                addedAmount += money;
             }
-
             if (addedAmount > price)
             {
                 cashPaymentTerminal.GiveBackChange(addedAmount - price);

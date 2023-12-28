@@ -19,20 +19,18 @@ namespace iQuest.VendingMachine.UseCases
 
         public void Execute(float price)
         {
-            var selectedPayment = SelectedPaymentMethodByUser();
-            if (selectedPayment != null)
-            {
-                selectedPayment.Run(price);
-            }
-            else
+            var selectedPayment = GetSelectedPaymentMethod();
+            if (selectedPayment == null)
             {
                 throw new InvalidTypeOfPaymentException();
             }
+            selectedPayment.Run(price);
+
         }
 
-        private IPaymentAlgorithm SelectedPaymentMethodByUser()
+        private IPaymentAlgorithm GetSelectedPaymentMethod()
         {
-            var paymentMethods = GetSelectedPaymentMethod();
+            var paymentMethods = SetPaymentsMethods();
             var getIdForPaymentMethod = buyView.AskForPaymentMethod(paymentMethods);
             foreach (var paymentMethod in paymentMethods)
             {
@@ -44,7 +42,7 @@ namespace iQuest.VendingMachine.UseCases
             return null;
         }
 
-        private List<PaymentMethod> GetSelectedPaymentMethod()
+        private List<PaymentMethod> SetPaymentsMethods()
         {
             List<PaymentMethod> paymentMethods = new List<PaymentMethod>();
             int paymentId = 0;
