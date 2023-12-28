@@ -18,20 +18,44 @@ namespace iQuest.VendingMachine.PaymentTypes
         public void Run(float price)
         {
             float addedAmount = 0;
-
-            while (addedAmount < price)
+            try
             {
-                float money = cashPaymentTerminal.AskForMoney();
-                if (!acceptedCoinsAndBanknotes.Contains(money))
+                while (addedAmount < price)
                 {
-                    cashPaymentTerminal.GiveBackChange(addedAmount);
-                    throw new InvalidMoneyException();
+                    float money = cashPaymentTerminal.AskForMoney();
+                    if (!acceptedCoinsAndBanknotes.Contains(money))
+                    {
+                        cashPaymentTerminal.GiveBackChange(addedAmount);
+                        throw new InvalidMoneyException();
+                    }
+                    addedAmount += money;
                 }
-                addedAmount += money;
             }
+            catch (CancelException ex)
+            {
+                GiveBackChangeIfNeedIt(addedAmount);
+                throw ex;
+            }
+            catch (InvalidMoneyException ex)
+            {
+
+                GiveBackChangeIfNeedIt(addedAmount);
+                throw ex;
+            }
+
             if (addedAmount > price)
             {
                 cashPaymentTerminal.GiveBackChange(addedAmount - price);
+            }
+
+        }
+
+        private void GiveBackChangeIfNeedIt(float addedAmount)
+        {
+            if (addedAmount > 0)
+            {
+
+                cashPaymentTerminal.GiveBackChange(addedAmount);
             }
         }
     }

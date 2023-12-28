@@ -37,5 +37,16 @@ namespace iQuest.VendingMachineTests.TestsForPaymentTypes
             mockCashPaymentTerminal.Setup(m => m.AskForMoney()).Returns(100);
             Assert.ThrowsException<InvalidMoneyException>(() => cashPayment.Run(2));
         }
+        [TestMethod]
+        public void HavingCashPayment_WhenRun_ThrowCancelException()
+        {
+            mockCashPaymentTerminal.Setup(m => m.AskForMoney()).Throws(new CancelException());
+            Assert.ThrowsException<CancelException>(() => cashPayment.Run(2));
+        }
+        public void HavingCashPayment_WhenRun_ThrowInvalidMoney()
+        {
+            mockCashPaymentTerminal.Setup(m => m.AskForMoney()).Throws(new InvalidMoneyException());
+            Assert.ThrowsException<InvalidMoneyException>(() => cashPayment.Run(2));
+        }
     }
 }
