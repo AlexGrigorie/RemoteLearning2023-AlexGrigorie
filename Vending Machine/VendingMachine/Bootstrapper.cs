@@ -2,10 +2,10 @@ using iQuest.VendingMachine.Authentication;
 using iQuest.VendingMachine.Interfaces;
 using iQuest.VendingMachine.PaymentTypes;
 using iQuest.VendingMachine.PresentationLayer;
-using iQuest.VendingMachine.Repository;
 using iQuest.VendingMachine.Services;
 using iQuest.VendingMachine.UseCases;
 using System.Collections.Generic;
+using VendingMachine.DataAccess.SqlServer;
 
 namespace iQuest.VendingMachine
 {
@@ -21,11 +21,12 @@ namespace iQuest.VendingMachine
         {
             CardPayment cardPayment = new CardPayment(new CardPaymentTerminal());
             CashPayment cashPayment = new CashPayment(new CashPaymentTerminal());
-            List<IPaymentAlgorithm> paymentAlgorithms = new List<IPaymentAlgorithm> {cashPayment, cardPayment};
+            List<IPaymentAlgorithm> paymentAlgorithms = new List<IPaymentAlgorithm> { cashPayment, cardPayment };
             MainDisplay mainDisplay = new MainDisplay();
             TurnOffService turnOffService = new TurnOffService();
             AuthenticationService authenticationService = new AuthenticationService();
-            ProductRepository productRepository = new ProductRepository();
+            //InMemoryProductRepository productRepository = new InMemoryProductRepository();
+            DatabaseProductRepository productRepository = new DatabaseProductRepository();
             ShelfView shelfView = new ShelfView();
             BuyView buyView = new BuyView();
             PaymentUseCase paymentUseCase = new PaymentUseCase(buyView, paymentAlgorithms);

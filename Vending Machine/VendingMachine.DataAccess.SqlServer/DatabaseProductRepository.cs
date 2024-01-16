@@ -1,0 +1,31 @@
+﻿using iQuest.VendingMachine.Entities;
+using iQuest.VendingMachine.Interfaces;
+
+namespace VendingMachine.DataAccess.SqlServer
+{
+    internal class DatabaseProductRepository : IProductRepository
+    {
+        public IEnumerable<Product> GetAll()
+        {
+            var products = new List<Product>();
+            using (var dbContext = new ApplicationDbContext())
+
+            {
+
+                products = dbContext.Products.ToList();
+
+            }
+            return products;
+        }
+
+        public Product GetByColumn(int columnId)
+        {
+            Product product = null;
+            using (var dbContext = new ApplicationDbContext())
+            {
+                 product = dbContext.Products.FirstOrDefault(p => p.ColumnId == columnId);
+            }
+            return product;
+        }
+    }
+}
