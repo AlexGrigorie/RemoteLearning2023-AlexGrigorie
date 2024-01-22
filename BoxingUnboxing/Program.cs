@@ -8,11 +8,11 @@ namespace BoxingUnboxing
         {
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
-            List<object> withBoxingdList = new List<object>();
+            List<object> withBoxingList = new List<object>();
 
             for (int j = 1; j < 10000000; j++)
             {
-                withBoxingdList.Add(j);
+                withBoxingList.Add(j);
             }
 
             stopWatch.Stop();
