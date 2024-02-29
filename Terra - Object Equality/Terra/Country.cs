@@ -16,22 +16,22 @@ namespace iQuest.Terra
 
         public override bool Equals(object obj)
         {
-            if (obj == null)
-                return false;
+            if (obj == null || !(obj is Country country)) return false;
 
-            Country country = obj as Country;
-            if (country == null)
-                return false;
+            return Name == country.Name && Capital == country.Capital;
 
-            return Name == country.Name
-                && Capital == country.Capital;
         }
         public int CompareTo(object obj)
         {
-            if (obj == null) return 1;
-            if(!(obj is Country)) throw new ArgumentException("The object must be Country type");
-
-            return Name.CompareTo((obj as Country).Name);
+            switch (obj)
+            {
+                case null:
+                    return 1;
+                case Country country:
+                    return Name.CompareTo(country.Name);
+                default:
+                    throw new ArgumentException("The object must be Country type");
+            }
         }
 
     }

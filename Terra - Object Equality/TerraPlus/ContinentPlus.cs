@@ -28,7 +28,7 @@ namespace iQuest.TerraPlus
 
         public IEnumerable<Country> EnumerateCountriesByCapital()
         {
-            return countries.OrderBy(country => country?.Capital);
+            return countries.OrderBy(country => country?.Capital).ToList();
         }
     }
 }
