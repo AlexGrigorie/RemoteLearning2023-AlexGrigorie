@@ -105,13 +105,8 @@ namespace iQuest.HotelQueries
         {
             var orderCustomersByFullName = Customers.GroupBy(ocbf => ocbf.LastAccommodation.Year)
                                                     .OrderByDescending(y => y.Key)
-                                                    .Select(c => new KeyValuePair<int, Customer[]>
-                                                                (c.Key, c.OrderBy(d => d.FullName).ToArray()))
+                                                    .Select(c => new KeyValuePair<int, Customer[]>(c.Key, c.OrderBy(d => d.FullName).ToArray()))
                                                     .ToList();
-
-            //return orderCustomersByFullName.OrderByDescending(ocbf => ocbf.LastAccommodation.Year)
-            //                                             .GroupBy(g => g.LastAccommodation.Year)
-            //                                             .Select(s => new KeyValuePair<int, Customer[]>(s.Key, s.ToArray())).ToList();
             return orderCustomersByFullName;
         }
 
