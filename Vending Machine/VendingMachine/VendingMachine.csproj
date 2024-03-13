@@ -29,4 +29,9 @@
 	  <ProjectReference Include="..\VendingMachine.DataAccess.SqlServer\VendingMachine.DataAccess.SqlServer.csproj" />
 	  <ProjectReference Include="..\VendingMachine.Presentation\VendingMachine.Presentation.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+	  <None Update="appsettings.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
 </Project>
