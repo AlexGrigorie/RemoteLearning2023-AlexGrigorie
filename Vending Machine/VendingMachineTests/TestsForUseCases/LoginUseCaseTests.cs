@@ -1,5 +1,4 @@
-﻿using iQuest.VendingMachine.Exceptions;
-using iQuest.VendingMachine.Interfaces;
+﻿using iQuest.VendingMachine.Interfaces;
 using iQuest.VendingMachine.UseCases;
 using Moq;
 

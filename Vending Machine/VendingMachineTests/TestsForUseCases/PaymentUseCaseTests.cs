@@ -3,6 +3,7 @@ using iQuest.VendingMachine.Exceptions;
 using iQuest.VendingMachine.Interfaces;
 using iQuest.VendingMachine.UseCases;
 using Moq;
+using VendingMachine.Business.Interfaces;
 
 namespace iQuest.VendingMachineTests.TestsForUseCases
 {
