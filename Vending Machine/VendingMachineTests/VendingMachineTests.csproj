@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\VendingMachine.Presentation\VendingMachine.Presentation.csproj" />
     <ProjectReference Include="..\VendingMachine_Business\VendingMachine_Business.csproj" />
   </ItemGroup>
 
