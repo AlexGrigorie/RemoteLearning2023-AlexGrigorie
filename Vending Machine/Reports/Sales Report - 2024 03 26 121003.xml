@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SalesReport xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Sale>
+		<Date>2023-06-02T00:00:00</Date>
+		<Name>Apple</Name>
+		<Price>2</Price>
+		<PaymentMethod>cash</PaymentMethod>
+	</Sale>
+</SalesReport>

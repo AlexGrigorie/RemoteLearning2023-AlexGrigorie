@@ -1,8 +1,7 @@
-﻿using iQuest.VendingMachine.Entities;
-using iQuest.VendingMachine.Exceptions;
-using iQuest.VendingMachine.Interfaces;
-using iQuest.VendingMachine.UseCases;
-using Moq;
+﻿using Moq;
+using VendingMachine_Business;
+using VendingMachine_Business.Entities;
+using VendingMachine_Business.Interfaces;
 
 namespace iQuest.VendingMachineTests.TestsForUseCases
 {
@@ -10,7 +9,6 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
     public class BuyUseCaseTests
     {
         private Mock<IProductRepository> mockProductRepository;
-        private Mock<IAuthenticationService> mockAuthenticationService;
         private Mock<IBuyView> mockBuyView;
         private Mock<IPaymentUseCase> mockPaymentUsecase;
         private BuyUseCase buyUseCase;
@@ -19,38 +17,9 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
         public void SetupTest()
         {
             mockProductRepository = new Mock<IProductRepository>();
-            mockAuthenticationService = new Mock<IAuthenticationService>();
             mockPaymentUsecase = new Mock<IPaymentUseCase>();
             mockBuyView = new Mock<IBuyView>();
-            buyUseCase = new BuyUseCase(mockAuthenticationService.Object, mockBuyView.Object,
-                mockProductRepository.Object, mockPaymentUsecase.Object);
-        }
-
-        [TestMethod]
-        public void HavingBuyUseCase__DisplayCorrectName()
-        {
-            string name = buyUseCase.Name;
-            Assert.AreEqual("buy", name);
-        }
-        [TestMethod]
-        public void HavingBuyUseCase__DisplayCorrectDescription()
-        {
-            string description = buyUseCase.Description;
-            Assert.AreEqual("Buy your favourite product", description);
-        }
-        [TestMethod]
-        public void HavingBuyUseCase_WhenNoAdminIsLogin_CanExecuteIsTrue()
-        {
-            mockAuthenticationService.Setup(m => m.IsUserLoggedIn).Returns(false);
-            bool canExecute = buyUseCase.CanExecute;
-            Assert.IsTrue(canExecute);
-        }
-        [TestMethod]
-        public void HavingBuyUseCase_WhenAdminIsLogin_CanExecuteIsFalse()
-        {
-            mockAuthenticationService.Setup(m => m.IsUserLoggedIn).Returns(true);
-            bool canExecute = buyUseCase.CanExecute;
-            Assert.IsFalse(canExecute);
+            buyUseCase = new BuyUseCase(mockBuyView.Object,mockProductRepository.Object, mockPaymentUsecase.Object);
         }
         [TestMethod]
         public void HavingBuyUseCase_WhenExecuteValidProductId_ThenDispenseProduct()
@@ -71,7 +40,6 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
             mockProductRepository.Setup(p => p.GetByColumn(It.Is<int>(f => f == invalidProductId))).Returns((Product)null);
             Assert.ThrowsException<InvalidColumnException>(() => buyUseCase.Execute());
         }
-
         [TestMethod]
         public void HavingBuyUseCase_WhenExecuteInsufficientStock_ThenThrowInsufficientStockException()
         {
