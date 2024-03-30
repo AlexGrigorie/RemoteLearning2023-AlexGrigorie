@@ -10,6 +10,7 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
     {
         private Mock<IProductRepository> mockProductRepository;
         private Mock<ISupplyProducView> mockSupplyProductView;
+        private Mock<ILoggerService> mockLoggerService;
         private SupplyNewProductUseCase supplyNewProductUse;
 
         [TestInitialize]
@@ -17,7 +18,8 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
         {
             mockProductRepository = new Mock<IProductRepository>();
             mockSupplyProductView = new Mock<ISupplyProducView>();
-            supplyNewProductUse = new SupplyNewProductUseCase(mockProductRepository.Object, mockSupplyProductView.Object);
+            mockLoggerService = new Mock<ILoggerService>();
+            supplyNewProductUse = new SupplyNewProductUseCase(mockProductRepository.Object, mockSupplyProductView.Object, mockLoggerService.Object);
         }
         [TestMethod]
         public void HavingSupplyExistingProductUseCase_WhenExecute_ThenIncreaseQuantity()

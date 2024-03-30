@@ -12,6 +12,7 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
     {
         private Mock<ISalesRepository> mockSalesRepository;
         private Mock<IReportsView> mockReportsView;
+        private Mock<ILoggerService> mockLoggerService;
         private Mock<IFileSerialization> mockFileSerialization;
         private VolumeReportUseCase volumeReportUseCase;
 
@@ -21,7 +22,8 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
             mockSalesRepository = new Mock<ISalesRepository>();
             mockReportsView = new Mock<IReportsView>();
             mockFileSerialization = new Mock<IFileSerialization>();
-            volumeReportUseCase = new VolumeReportUseCase(mockSalesRepository.Object, mockReportsView.Object, mockFileSerialization.Object);
+            mockLoggerService = new Mock<ILoggerService>();
+            volumeReportUseCase = new VolumeReportUseCase(mockSalesRepository.Object, mockReportsView.Object, mockFileSerialization.Object, mockLoggerService.Object);
         }
         [TestMethod]
         public void HavingVolumeReportUseCase_WhenExecuteWithValidDates_ThenCallsReportsViewAndSerialization()

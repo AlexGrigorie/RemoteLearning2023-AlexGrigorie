@@ -11,6 +11,7 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
         private Mock<IProductRepository> mockProductRepository;
         private Mock<IBuyView> mockBuyView;
         private Mock<IPaymentUseCase> mockPaymentUsecase;
+        private Mock<ILoggerService> mockLoggerService;
         private BuyUseCase buyUseCase;
 
         [TestInitialize]
@@ -19,7 +20,8 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
             mockProductRepository = new Mock<IProductRepository>();
             mockPaymentUsecase = new Mock<IPaymentUseCase>();
             mockBuyView = new Mock<IBuyView>();
-            buyUseCase = new BuyUseCase(mockBuyView.Object,mockProductRepository.Object, mockPaymentUsecase.Object);
+            mockLoggerService = new Mock<ILoggerService>();
+            buyUseCase = new BuyUseCase(mockBuyView.Object,mockProductRepository.Object, mockPaymentUsecase.Object, mockLoggerService.Object);
         }
         [TestMethod]
         public void HavingBuyUseCase_WhenExecuteValidProductId_ThenDispenseProduct()

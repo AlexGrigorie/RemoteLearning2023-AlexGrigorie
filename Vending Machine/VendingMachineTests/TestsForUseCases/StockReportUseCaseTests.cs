@@ -12,6 +12,7 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
         private Mock<IProductRepository> mockProductRepository;
         private Mock<IReportsView> mockReportsView;
         private Mock<IFileSerialization> mockFileSerialization;
+        private Mock<ILoggerService> mockLoggerService;
         private StockReportUseCase stockReportUseCase;
 
         [TestInitialize]
@@ -20,7 +21,8 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
             mockProductRepository = new Mock<IProductRepository>();
             mockReportsView = new Mock<IReportsView>();
             mockFileSerialization = new Mock<IFileSerialization>();
-            stockReportUseCase = new StockReportUseCase(mockFileSerialization.Object, mockProductRepository.Object, mockReportsView.Object);
+            mockLoggerService = new Mock<ILoggerService>();
+            stockReportUseCase = new StockReportUseCase(mockFileSerialization.Object, mockProductRepository.Object, mockReportsView.Object, mockLoggerService.Object);
         }
 
         [TestMethod]

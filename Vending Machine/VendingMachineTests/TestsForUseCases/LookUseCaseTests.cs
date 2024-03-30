@@ -9,6 +9,7 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
     {
         private Mock<IProductRepository> mockProductRepository;
         private Mock<IShelfView> mockShelfView;
+        private Mock<ILoggerService> mockLoggerService;
         private LookUseCase lookUseCase;
 
         [TestInitialize]
@@ -16,7 +17,8 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
         {
             mockProductRepository = new Mock<IProductRepository>();
             mockShelfView = new Mock<IShelfView>();
-            lookUseCase = new LookUseCase(mockProductRepository.Object, mockShelfView.Object);
+            mockLoggerService = new Mock<ILoggerService>();
+            lookUseCase = new LookUseCase(mockProductRepository.Object, mockShelfView.Object, mockLoggerService.Object);
         }
         [TestMethod]
         public void HavingLookUseCase_WhenExecute_ThenDisplayAllProducts()

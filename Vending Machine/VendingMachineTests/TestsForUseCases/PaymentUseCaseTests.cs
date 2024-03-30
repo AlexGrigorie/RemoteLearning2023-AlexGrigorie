@@ -10,6 +10,7 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
         private Mock<IPaymentAlgorithm> mockCashPayment;
         private Mock<IPaymentAlgorithm> mockCardPayment;
         private Mock<IBuyView> mockBuyView;
+        private Mock<ILoggerService> mockLoggerService;
         private List<IPaymentAlgorithm> algorithms;
         private PaymentUseCase paymentUseCase;
 
@@ -19,8 +20,9 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
             mockCashPayment = new Mock<IPaymentAlgorithm>();
             mockCardPayment = new Mock<IPaymentAlgorithm>();
             mockBuyView = new Mock<IBuyView>();
+            mockLoggerService = new Mock<ILoggerService>();
             algorithms = new List<IPaymentAlgorithm> { mockCashPayment.Object, mockCardPayment.Object };
-            paymentUseCase = new PaymentUseCase(mockBuyView.Object, algorithms);
+            paymentUseCase = new PaymentUseCase(mockBuyView.Object, algorithms, mockLoggerService.Object);
         }
         [TestMethod]
         public void HavingPaymentUseCase_WhenExecute_ThenUseCashPaymentMethod()

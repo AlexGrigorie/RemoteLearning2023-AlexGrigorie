@@ -7,13 +7,15 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
     public class LogoutUseCaseTests
     {
         private Mock<IAuthenticationService> mockAuthenticationService;
+        private Mock<ILoggerService> mockLoggerService;
         private LogoutUseCase logoutUseCase;
 
         [TestInitialize]
         public void SetupTest()
         {
             mockAuthenticationService = new Mock<IAuthenticationService>();
-            logoutUseCase = new LogoutUseCase(mockAuthenticationService.Object);
+            mockLoggerService = new Mock<ILoggerService>();
+            logoutUseCase = new LogoutUseCase(mockAuthenticationService.Object, mockLoggerService.Object);
         }
 
         [TestMethod]

@@ -8,6 +8,7 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
     {
         private Mock<IAuthenticationService> mockAuthenticationService;
         private Mock<IMainDisplay> mockMainDisplay;
+        private Mock<ILoggerService> mockLoggerService;
         private LoginUseCase loginUseCase;
 
         [TestInitialize]
@@ -15,7 +16,8 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
         {
             mockAuthenticationService = new Mock<IAuthenticationService>();
             mockMainDisplay = new Mock<IMainDisplay>();
-            loginUseCase = new LoginUseCase(mockAuthenticationService.Object, mockMainDisplay.Object);
+            mockLoggerService = new Mock<ILoggerService>();
+            loginUseCase = new LoginUseCase(mockAuthenticationService.Object, mockMainDisplay.Object, mockLoggerService.Object);
         }
         [TestMethod]
         public void HavingLoginUseCase_WhenExecuteForCorrectPassword_ThenSetUserIsLoggedInToTrue()

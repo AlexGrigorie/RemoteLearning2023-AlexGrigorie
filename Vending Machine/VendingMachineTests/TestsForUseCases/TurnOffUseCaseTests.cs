@@ -7,13 +7,15 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
     public class TurnOffUseCaseTests
     {
         private Mock<ITurnOffService> mockTurnOffService;
+        private Mock<ILoggerService> mockLoggerService;
         private TurnOffUseCase turnOffUseCase;
 
         [TestInitialize]
         public void SetupTest()
         {
             mockTurnOffService = new Mock<ITurnOffService>();
-            turnOffUseCase = new TurnOffUseCase(mockTurnOffService.Object);
+            mockLoggerService = new Mock<ILoggerService>();
+            turnOffUseCase = new TurnOffUseCase(mockTurnOffService.Object, mockLoggerService.Object);
         }
         [TestMethod]
         public void TurnOffUseCase_Execute_CallsTurnOffMethodOnTurnOffService()
