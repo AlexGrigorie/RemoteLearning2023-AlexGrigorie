@@ -69,7 +69,7 @@ namespace VendingMachine_Business.Reports.Sales
         {
             return sales.Where(x => x.SaleDate.Date >= timeInterval.StartDate || x.SaleDate.Date >= timeInterval.EndDate)
                                                    .GroupBy(x => x.Product.Name)
-                                                   .Select(x => new Product { Name = x.Key, Quantity = x.ToList().Count() });
+                                                   .Select(x => new Product { Name = x.Key, Quantity = x.Sum(q => q.Product.Quantity) });
         }
     }
 }
