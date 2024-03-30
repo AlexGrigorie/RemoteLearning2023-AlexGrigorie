@@ -1,7 +1,5 @@
-﻿using iQuest.VendingMachine.Exceptions;
-using iQuest.VendingMachine.Interfaces;
-using iQuest.VendingMachine.UseCases;
-using Moq;
+﻿using Moq;
+using VendingMachine_Business.Interfaces;
 
 namespace iQuest.VendingMachineTests.TestsForUseCases
 {
@@ -18,32 +16,6 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
             mockAuthenticationService = new Mock<IAuthenticationService>();
             mockMainDisplay = new Mock<IMainDisplay>();
             loginUseCase = new LoginUseCase(mockAuthenticationService.Object, mockMainDisplay.Object);
-        }
-        [TestMethod]
-        public void HavingLoginUseCase__DisplayCorrectName()
-        {
-            string name = loginUseCase.Name;
-            Assert.AreEqual("login", name);
-        }
-        [TestMethod]
-        public void HavingLoginUseCase__DisplayCorrectDescription()
-        {
-            string name = loginUseCase.Description;
-            Assert.AreEqual("Get access to administration buttons.", name);
-        }
-        [TestMethod]
-        public void HavingLoginUseCase_WhenNoAdmin_CanExecuteIsTrue()
-        {
-            mockAuthenticationService.Setup(m => m.IsUserLoggedIn).Returns(false);
-            bool canExecute = loginUseCase.CanExecute;
-            Assert.IsTrue(canExecute);
-        }
-        [TestMethod]
-        public void HavingLoginUseCase_WhenAdminIsLoggedIn_CanExecuteIsFalse()
-        {
-            mockAuthenticationService.Setup(m => m.IsUserLoggedIn).Returns(true);
-            bool canExecute = loginUseCase.CanExecute;
-            Assert.IsFalse(canExecute);
         }
         [TestMethod]
         public void HavingLoginUseCase_WhenExecuteForCorrectPassword_ThenSetUserIsLoggedInToTrue()

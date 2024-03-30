@@ -1,7 +1,6 @@
-﻿using iQuest.VendingMachine.Entities;
-using iQuest.VendingMachine.Interfaces;
-using iQuest.VendingMachine.UseCases;
-using Moq;
+﻿using Moq;
+using VendingMachine_Business.Entities;
+using VendingMachine_Business.Interfaces;
 
 namespace iQuest.VendingMachineTests.TestsForUseCases
 {
@@ -18,24 +17,6 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
             mockProductRepository = new Mock<IProductRepository>();
             mockShelfView = new Mock<IShelfView>();
             lookUseCase = new LookUseCase(mockProductRepository.Object, mockShelfView.Object);
-        }
-        [TestMethod]
-        public void HavingLookUseCase__DisplayCorrectName()
-        {
-            string name = lookUseCase.Name;
-            Assert.AreEqual("look", name);
-        }
-        [TestMethod]
-        public void HavingLookUseCase__DisplayCorrectDescription()
-        {
-            string description = lookUseCase.Description;
-            Assert.AreEqual("Display all available products.", description);
-        }
-        [TestMethod]
-        public void HavingLookUseCase_WhenAnyone_CanExecuteIsTrue()
-        {
-            bool canExecute = lookUseCase.CanExecute;
-            Assert.IsTrue(canExecute);
         }
         [TestMethod]
         public void HavingLookUseCase_WhenExecute_ThenDisplayAllProducts()

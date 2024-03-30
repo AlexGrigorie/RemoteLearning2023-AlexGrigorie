@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VolumeReport xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<StarDate>2023-01-01T00:00:00</StarDate>
+	<EndDate>2023-06-01T00:00:00</EndDate>
+	<Sales>
+		<Product>
+			<Name>Apple</Name>
+			<Quantity>1</Quantity>
+		</Product>
+		<Product>
+			<Name>Orange</Name>
+			<Quantity>1</Quantity>
+		</Product>
+		<Product>
+			<Name>Grape</Name>
+			<Quantity>1</Quantity>
+		</Product>
+	</Sales>
+</VolumeReport>

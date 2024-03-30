@@ -1,6 +1,5 @@
-﻿using iQuest.VendingMachine.Interfaces;
-using iQuest.VendingMachine.UseCases;
-using Moq;
+﻿using Moq;
+using VendingMachine_Business.Interfaces;
 
 namespace iQuest.VendingMachineTests.TestsForUseCases
 {
@@ -16,32 +15,7 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
             mockAuthenticationService = new Mock<IAuthenticationService>();
             logoutUseCase = new LogoutUseCase(mockAuthenticationService.Object);
         }
-        [TestMethod]
-        public void HavingLogoutUseCase__DisplayCorrectName()
-        {
-            string name = logoutUseCase.Name;
-            Assert.AreEqual("logout", name);
-        }
-        [TestMethod]
-        public void HavingLogoutUseCase__DisplayCorrectDescription()
-        {
-            string description = logoutUseCase.Description;
-            Assert.AreEqual("Restrict access to administration buttons.", description);
-        }
-        [TestMethod]
-        public void HavingLogoutUseCase_WhenNoAdmin_CanExecuteIsFalse()
-        {
-            mockAuthenticationService.Setup(m => m.IsUserLoggedIn).Returns(false);
-            bool canExecute = logoutUseCase.CanExecute;
-            Assert.IsFalse(canExecute);
-        }
-        [TestMethod]
-        public void HavingLogoutUseCase_WhenAdminIsLoggedIn_CanExecuteIsTrue()
-        {
-            mockAuthenticationService.Setup(m => m.IsUserLoggedIn).Returns(true);
-            bool canExecute = logoutUseCase.CanExecute;
-            Assert.IsTrue(canExecute);
-        }
+
         [TestMethod]
         public void HavingLogoutUseCase_WhenExecute_ThenSetUserIsLoggedInToFalse()
         {
