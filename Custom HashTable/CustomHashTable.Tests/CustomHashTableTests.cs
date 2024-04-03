@@ -77,5 +77,17 @@ namespace CustomHashTable.Tests
 
             Assert.AreEqual(hashTable["year"], year);
         }
+        [TestMethod]
+        public void CustomHashTable_WhenKeyIsNull_ThenThrowInvalidKey()
+        {
+            var hashTable = new MyHashTable<string, int>(4);
+            Assert.ThrowsException<InvalidKey>(() => hashTable.Get(null));
+        }
+        [TestMethod]
+        public void CustomHashTable_WhenKeyIsEmpty_ThenThrowInvalidKey()
+        {
+            var hashTable = new MyHashTable<string, int>(4);
+            Assert.ThrowsException<InvalidKey>(() => hashTable.Get(""));
+        }
     }
 }

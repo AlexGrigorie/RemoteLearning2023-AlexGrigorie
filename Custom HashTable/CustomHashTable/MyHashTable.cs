@@ -4,26 +4,26 @@ namespace CustomHashTable
     public class MyHashTable<TKey, TValue>
     {
         private readonly int size;
-        private readonly LinkedList<KeyValueData<TKey, TValue>>[] items;
+        private readonly LinkedList<KeyValuePair<TKey, TValue>>[] items;
         public MyHashTable(int size)
         {
             this.size = size;
-            this.items = new LinkedList<KeyValueData<TKey, TValue>>[size];
+            this.items = new LinkedList<KeyValuePair<TKey, TValue>>[size];
         }
 
         public void Put(TKey key, TValue value) 
         {
             int position = GetArrayPosition(key);
-            LinkedList<KeyValueData<TKey, TValue>> linkedList = GetLinkedList(position);
-            KeyValueData<TKey, TValue> item = new KeyValueData<TKey, TValue> { Key = key, Value = value };
+            LinkedList<KeyValuePair<TKey, TValue>> linkedList = GetLinkedList(position);
+            KeyValuePair<TKey, TValue> item = new KeyValuePair<TKey, TValue>(key, value);
             linkedList.AddLast(item);
         }
 
         public TValue Get(TKey key) 
         {
             int position = GetArrayPosition(key);
-            LinkedList<KeyValueData<TKey, TValue>> linkedList = GetLinkedList(position);
-            foreach(KeyValueData<TKey, TValue> item in linkedList)
+            LinkedList<KeyValuePair<TKey, TValue>> linkedList = GetLinkedList(position);
+            foreach(KeyValuePair<TKey, TValue> item in linkedList)
             {
                 if (item.Key.Equals(key))
                 {
@@ -35,15 +35,16 @@ namespace CustomHashTable
         public void Remove(TKey key) 
         {
             int position = GetArrayPosition(key);
-            LinkedList<KeyValueData<TKey, TValue>> linkedList = GetLinkedList(position);
+            LinkedList<KeyValuePair<TKey, TValue>> linkedList = GetLinkedList(position);
             bool itemFound = false;
-            KeyValueData<TKey, TValue> foundItem = default(KeyValueData<TKey, TValue>);
-            foreach (KeyValueData<TKey, TValue> item in linkedList)
+            KeyValuePair<TKey, TValue> foundItem = default(KeyValuePair<TKey, TValue>);
+            foreach (KeyValuePair<TKey, TValue> item in linkedList)
             {
                 if (item.Key.Equals(key))
                 {
                     foundItem = item;
                     itemFound = true;
+                    break;
                 }
             }
             if (itemFound) 
@@ -64,9 +65,9 @@ namespace CustomHashTable
         public bool ContainsKey(TKey key) 
         {
             int position = GetArrayPosition(key);
-            LinkedList<KeyValueData<TKey, TValue>> linkedList = GetLinkedList(position);
+            LinkedList<KeyValuePair<TKey, TValue>> linkedList = GetLinkedList(position);
             bool isKey = false;
-            foreach (KeyValueData<TKey, TValue> item in linkedList)
+            foreach (KeyValuePair<TKey, TValue> item in linkedList)
             {
                 if (item.Key.Equals(key))
                 {
@@ -82,12 +83,12 @@ namespace CustomHashTable
             set => Put(key, value);
         }
 
-        private LinkedList<KeyValueData<TKey, TValue>> GetLinkedList(int position)
+        private LinkedList<KeyValuePair<TKey, TValue>> GetLinkedList(int position)
         {
-           LinkedList<KeyValueData<TKey, TValue>> linkedList = items[position];
+           LinkedList<KeyValuePair<TKey, TValue>> linkedList = items[position];
            if(linkedList == null) 
            {
-                linkedList = new LinkedList<KeyValueData<TKey, TValue>>();
+                linkedList = new LinkedList<KeyValuePair<TKey, TValue>>();
                 items[position] = linkedList;
            }
            return linkedList;
@@ -95,15 +96,13 @@ namespace CustomHashTable
 
         private int GetArrayPosition(TKey key)
         {
+            if(key == null || key.ToString() == "") 
+            {
+                throw new InvalidKey();
+            }
             var hashCode = key.GetHashCode();
             int postion = hashCode % size;
             return Math.Abs(postion);
-        }
-
-        private struct KeyValueData<TKey, TValue> 
-        {
-            public TKey Key { get; set; }
-            public TValue Value { get; set; }
         }
     }
 }
