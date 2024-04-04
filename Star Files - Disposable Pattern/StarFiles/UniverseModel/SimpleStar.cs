@@ -7,7 +7,7 @@ namespace iQuest.StarFiles.UniverseModel
     /// </summary>
     internal class SimpleStar : IDisposable 
     {
-        private bool disposed = false;
+        private bool isDisposed = false;
         protected WinApiFile File { get; private set; }
 
         public string Name { get; }
@@ -44,15 +44,15 @@ namespace iQuest.StarFiles.UniverseModel
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
+        protected virtual void Dispose(bool isDisposing)
         {
-            if (!this.disposed)
+            if (!isDisposed)
             {
-                if (disposing)
+                if (isDisposing)
                 {
                     File?.Dispose();
                 }
-                disposed = true;
+                isDisposed = true;
             }
         }
     }

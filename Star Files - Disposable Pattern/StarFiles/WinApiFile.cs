@@ -14,7 +14,7 @@ namespace iQuest.StarFiles
 
         public string FileName { get; }
 
-        private bool disposed = false;
+        private bool isDisposed = false;
 
         public WinApiFile(string fileName)
         {
@@ -93,17 +93,17 @@ namespace iQuest.StarFiles
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-        protected virtual void Dispose(bool disposing)
+        protected virtual void Dispose(bool isDisposing)
         {
-            if (!this.disposed)
+            if (!this.isDisposed)
             {
-                if (disposing)
+                if (isDisposing)
                 {
                     CloseHandle(fileHandle);
                     fileHandle = IntPtr.Zero;
                 }
 
-                disposed = true;
+                isDisposed = true;
             }
         }
         [System.Runtime.InteropServices.DllImport("Kernel32")]

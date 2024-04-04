@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 
 namespace iQuest.StarFiles.UniverseModel
 {
@@ -11,7 +10,7 @@ namespace iQuest.StarFiles.UniverseModel
     {
         private readonly Random random = new Random();
         private WinApiFile additionalFile;
-        private bool disposed = false;
+        private bool isDisposed = false;
 
         public string AdditionalFilename => additionalFile.FileName;
 
@@ -70,22 +69,16 @@ namespace iQuest.StarFiles.UniverseModel
             }
         }
 
-        public new void Dispose()
+        protected override void Dispose(bool isDisposing)
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (!this.disposed)
+            if (!isDisposed)
             {
-                if (disposing)
+                if (isDisposing)
                 {
                     additionalFile?.Dispose();
                 }
-                base.Dispose(disposing);
-                disposed = true;
+                base.Dispose(isDisposing);
+                isDisposed = true;
             }
         }
     }
