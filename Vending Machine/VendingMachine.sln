@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.Presentation
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.DataAccess.SqlServer", "VendingMachine.DataAccess.SqlServer\VendingMachine.DataAccess.SqlServer.csproj", "{528EC938-7DD5-4394-AA37-285F38813932}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachine_Business", "VendingMachine_Business\VendingMachine_Business.csproj", "{D54ABD01-7B5D-43E5-BECA-AD8835FB59E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine_Business", "VendingMachine_Business\VendingMachine_Business.csproj", "{D54ABD01-7B5D-43E5-BECA-AD8835FB59E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
