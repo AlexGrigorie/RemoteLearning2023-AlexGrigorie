@@ -1,4 +1,4 @@
-﻿using iQuest.BooksAndNews.Application.CustomeEventsArgs;
+﻿using iQuest.BooksAndNews.Application.Publications;
 using iQuest.BooksAndNews.Application.Publishers;
 
 namespace iQuest.BooksAndNews.Application.Subscribers
@@ -15,9 +15,9 @@ namespace iQuest.BooksAndNews.Application.Subscribers
             printingOffice.RaiseBookEvent += HandleBookEvent;
         }
 
-        private void HandleBookEvent(object sender, BookEventArgs e) 
+        private void HandleBookEvent(Book book)
         {
-            log.WriteInfo($"This subscriber has been notified {name}");
+            log.WriteInfo($"This subscriber has been notified {name} {book.Title} {book.Author} {book.Year}");
         }
     }
 }

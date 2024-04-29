@@ -4,7 +4,7 @@ namespace iQuest.BooksAndNews.Application.CustomeEventsArgs
 {
     public class NewspaperEventArgs : EventArgs
     {
-        public NewspaperEventArgs(string title, int number) 
+        public NewspaperEventArgs(string title, int number)
         {
             Title = title;
             Number = number;
