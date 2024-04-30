@@ -1,7 +1,7 @@
-﻿using iQuest.VendingMachine.Exceptions;
-using iQuest.VendingMachine.Helper;
-using iQuest.VendingMachine.Interfaces;
-namespace iQuest.VendingMachine.PaymentTypes
+﻿using VendingMachine.Business.Exceptions;
+using VendingMachine.Business.Interfaces;
+
+namespace VendingMachine.Business.PaymentTypes
 {
     internal class CardPayment : IPaymentAlgorithm
     {

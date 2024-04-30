@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using VendingMachine_Business;
+using Microsoft.EntityFrameworkCore;
+using VendingMachine.Business.Entities;
 
 namespace VendingMachine.DataAccess.SqlServer
 {

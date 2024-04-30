@@ -1,4 +1,4 @@
-﻿namespace iQuest.VendingMachine.Interfaces
+﻿namespace VendingMachine.Business.Interfaces
 {
     internal interface ICardPaymentTerminal
     {

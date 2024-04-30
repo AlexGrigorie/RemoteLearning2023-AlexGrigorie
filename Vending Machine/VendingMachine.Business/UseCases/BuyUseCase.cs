@@ -1,26 +1,20 @@
-﻿using iQuest.VendingMachine.Entities;
-using iQuest.VendingMachine.Exceptions;
-using iQuest.VendingMachine.Interfaces;
+using VendingMachine.Business.Entities;
+using VendingMachine.Business.Exceptions;
 using VendingMachine.Business.Interfaces;
-namespace iQuest.VendingMachine.UseCases
+
+namespace VendingMachine.Business.UseCase
+
 {
     internal class BuyUseCase : IUseCase
     {
         private readonly IBuyView buyView;
         private readonly IProductRepository productRepository;
         private readonly IPaymentUseCase paymentUseCase;
-        private readonly IAuthenticationService authenticationService;
         private const int minimumProductQuantity = 1;
-        public string Name => "buy";
 
-        public string Description => "Buy your favourite product";
-
-        public bool CanExecute => !authenticationService.IsUserLoggedIn;
-
-        public BuyUseCase(IAuthenticationService authenticationService, IBuyView buyView, 
+        public BuyUseCase(IBuyView buyView, 
             IProductRepository productRepository, IPaymentUseCase paymentUseCase)
         {
-            this.authenticationService = authenticationService ?? throw new ArgumentNullException(nameof(authenticationService));
             this.buyView = buyView ?? throw new ArgumentNullException(nameof(buyView));
             this.productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
             this.paymentUseCase = paymentUseCase ?? throw new ArgumentNullException(nameof(paymentUseCase));

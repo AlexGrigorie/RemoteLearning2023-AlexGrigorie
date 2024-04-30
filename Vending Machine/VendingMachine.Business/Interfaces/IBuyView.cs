@@ -1,4 +1,4 @@
-using iQuest.VendingMachine.Entities;
+using VendingMachine.Business.Entities;
 namespace VendingMachine.Business.Interfaces
 {
 

@@ -1,6 +1,6 @@
 ﻿using Moq;
+using VendingMachine.Business.Interfaces;
 using VendingMachine.Presentation.Commands;
-using VendingMachine_Business.Interfaces;
 
 namespace iQuest.VendingMachineTests.Commands
 {

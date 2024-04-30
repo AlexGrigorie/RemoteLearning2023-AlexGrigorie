@@ -1,6 +1,6 @@
-﻿using iQuest.VendingMachine.Entities;
+using VendingMachine.Business.Entities;
 
-namespace iQuest.VendingMachine.Interfaces
+namespace VendingMachine.Business.Interfaces
 {
     internal interface IShelfView
     {

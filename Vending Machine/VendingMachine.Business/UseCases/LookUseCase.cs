@@ -1,16 +1,11 @@
-﻿using iQuest.VendingMachine.Interfaces;
+using VendingMachine.Business.Interfaces;
 
-namespace iQuest.VendingMachine.UseCases
+namespace VendingMachine.Business.UseCase
 {
     internal class LookUseCase : IUseCase
     {
         private readonly IProductRepository productRepository;
         private readonly IShelfView shelfView;
-        public string Name => "look";
-
-        public string Description => "Display all available products.";
-
-        public bool CanExecute => true;
 
         public LookUseCase(IProductRepository productRepository, IShelfView shelfView)
         {
