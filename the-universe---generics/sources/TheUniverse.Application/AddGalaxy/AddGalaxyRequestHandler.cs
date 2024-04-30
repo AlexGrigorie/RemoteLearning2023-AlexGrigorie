@@ -11,13 +11,8 @@ namespace RemoteLearning.TheUniverse.Application.AddGalaxy
             if (request == null)
                 throw new ArgumentNullException(nameof(request));
 
-            if (request is AddGalaxyRequest addGalaxyRequest)
-            {
-                string galaxyName = addGalaxyRequest.GalaxyDetailsProvider.GetGalaxyName();
-                return Universe.Instance.AddGalaxy(galaxyName);
-            }
-            
-            throw new ArgumentException($"The request must be of type {request.GetType().FullName}.", nameof(request));
+            string galaxyName = request.GalaxyDetailsProvider.GetGalaxyName();
+            return Universe.Instance.AddGalaxy(galaxyName);
         }
     }
 }

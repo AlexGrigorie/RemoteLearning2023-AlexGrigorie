@@ -11,15 +11,10 @@ namespace RemoteLearning.TheUniverse.Application.AddStar
             if (request == null)
                 throw new ArgumentNullException(nameof(request));
 
-            if (request is AddStarRequest addStarRequest)
-            {
-                string starName = addStarRequest.StarDetailsProvider.GetStarName();
-                string galaxyName = addStarRequest.StarDetailsProvider.GetGalaxyName();
+            string starName = request.StarDetailsProvider.GetStarName();
+            string galaxyName = request.StarDetailsProvider.GetGalaxyName();
 
-                return Universe.Instance.AddStar(starName, galaxyName);
-            }
-
-            throw new ArgumentException($"The request must be of type {request.GetType().FullName}.", nameof(request));
+            return Universe.Instance.AddStar(starName, galaxyName);
         }
     }
 }

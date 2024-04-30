@@ -29,7 +29,7 @@ namespace RemoteLearning.TheUniverse.Infrastructure
 
             Type requestHandlerType = handlers[requestType];
 
-            IRequestHandler<TResult, TRequest> requestHandler = (IRequestHandler<TResult, TRequest>)Activator.CreateInstance(requestHandlerType);
+            var requestHandler = (IRequestHandler<TResult, TRequest>)Activator.CreateInstance(requestHandlerType);
 
             return requestHandler.Execute(request);
         }
