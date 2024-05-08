@@ -1,6 +1,6 @@
-﻿using iQuest.VendingMachine.Interfaces;
-using iQuest.VendingMachine.UseCases;
-using Moq;
+﻿using Moq;
+using VendingMachine.Business.Interfaces;
+using VendingMachine.Business.UseCase;
 
 namespace iQuest.VendingMachineTests.TestsForUseCases
 {
