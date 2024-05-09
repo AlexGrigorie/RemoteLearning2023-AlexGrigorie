@@ -1,5 +1,6 @@
 ﻿using iQuest.BigTree.ThirdPartyLibrary;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
@@ -26,20 +27,17 @@ namespace iQuest.BigTree.Business.Jobs
 
         private static Node GenerateNode(int descendentLevelCount)
         {
-            Node node = new Node
-            {
-                Values = ThirdPartyCalculator.Calculate()
-            };
+            List<Task> tasks = new List<Task>();
+            Node node = new Node();
+            Task task = Task.Run(() => node.Values = ThirdPartyCalculator.Calculate());
+            tasks.Add(task);
 
             if (descendentLevelCount > 0)
             {
-                Task<Node> leftTask = Task.Run(() => GenerateNode(descendentLevelCount - 1));
-                Task<Node> rightTask = Task.Run(() => GenerateNode(descendentLevelCount - 1));
-                Task.WaitAll(leftTask, rightTask);
-                node.LeftNode = leftTask.Result;
-                node.RightNode = rightTask.Result;
+                node.LeftNode = GenerateNode(descendentLevelCount - 1);
+                node.RightNode = GenerateNode(descendentLevelCount - 1);
             }
-
+            Task.WhenAll(tasks);
             return node;
         }
 
