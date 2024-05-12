@@ -1,5 +1,5 @@
-﻿using VendingMachine_Business.Entities;
-using VendingMachine_Business.Interfaces;
+using VendingMachine.Business.Entities;
+using VendingMachine.Business.Interfaces;
 
 namespace iQuest.VendingMachine.PresentationLayer
 {

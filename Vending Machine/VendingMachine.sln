@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.Presentation
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.DataAccess.SqlServer", "VendingMachine.DataAccess.SqlServer\VendingMachine.DataAccess.SqlServer.csproj", "{528EC938-7DD5-4394-AA37-285F38813932}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachine_Business", "VendingMachine_Business\VendingMachine_Business.csproj", "{D54ABD01-7B5D-43E5-BECA-AD8835FB59E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.Business", "VendingMachine.Business\VendingMachine.Business.csproj", "{76FAD064-8F9E-40BF-B93E-7BC67612EA51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{528EC938-7DD5-4394-AA37-285F38813932}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{528EC938-7DD5-4394-AA37-285F38813932}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{528EC938-7DD5-4394-AA37-285F38813932}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D54ABD01-7B5D-43E5-BECA-AD8835FB59E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D54ABD01-7B5D-43E5-BECA-AD8835FB59E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D54ABD01-7B5D-43E5-BECA-AD8835FB59E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D54ABD01-7B5D-43E5-BECA-AD8835FB59E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76FAD064-8F9E-40BF-B93E-7BC67612EA51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76FAD064-8F9E-40BF-B93E-7BC67612EA51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76FAD064-8F9E-40BF-B93E-7BC67612EA51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76FAD064-8F9E-40BF-B93E-7BC67612EA51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,5 @@
-﻿using VendingMachine_Business.Interfaces;
+using VendingMachine.Business.Interfaces;
+using VendingMachine.Business.UseCase;
 
 namespace VendingMachine.Presentation.Commands
 {
@@ -9,6 +10,7 @@ namespace VendingMachine.Presentation.Commands
         public string Name => "exit";
         public string Description => "Go to live your life.";
         public bool CanExecute => authenticationService.IsUserLoggedIn;
+
         public TurnOffCommand(IAuthenticationService authenticationService, IUseCaseFactory factory)
         {
             this.authenticationService = authenticationService ?? throw new ArgumentNullException(nameof(authenticationService));

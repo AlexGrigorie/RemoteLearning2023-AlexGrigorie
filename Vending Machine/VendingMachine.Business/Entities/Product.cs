@@ -1,4 +1,4 @@
-﻿namespace iQuest.VendingMachine.Entities
+﻿namespace VendingMachine.Business.Entities
 {
     internal class Product
     {

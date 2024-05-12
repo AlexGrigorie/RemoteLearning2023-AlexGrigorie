@@ -1,9 +1,8 @@
-﻿using iQuest.VendingMachine.Entities;
-using iQuest.VendingMachine.Exceptions;
-using iQuest.VendingMachine.Interfaces;
+using VendingMachine.Business.Entities;
+using VendingMachine.Business.Exceptions;
 using VendingMachine.Business.Interfaces;
 
-namespace iQuest.VendingMachine.UseCases
+namespace VendingMachine.Business.UseCase
 {
     internal class PaymentUseCase : IPaymentUseCase
     {

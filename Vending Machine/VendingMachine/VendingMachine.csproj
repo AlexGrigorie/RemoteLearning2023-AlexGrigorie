@@ -29,7 +29,7 @@
 	  <ProjectReference Include="..\VendingMachine.DataAccess.InMemory\VendingMachine.DataAccess.InMemory.csproj" />
 	  <ProjectReference Include="..\VendingMachine.DataAccess.SqlServer\VendingMachine.DataAccess.SqlServer.csproj" />
 	  <ProjectReference Include="..\VendingMachine.Presentation\VendingMachine.Presentation.csproj" />
-	  <ProjectReference Include="..\VendingMachine_Business\VendingMachine_Business.csproj" />
+	  <ProjectReference Include="..\VendingMachine.Business\VendingMachine.Business.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 	  <None Update="appsettings.json">

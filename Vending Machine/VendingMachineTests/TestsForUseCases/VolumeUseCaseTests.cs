@@ -1,9 +1,9 @@
 ﻿using Moq;
-using VendingMachine_Business.Exceptions;
-using VendingMachine_Business.Interfaces;
-using VendingMachine_Business.Reports.Stock;
-using VendingMachine_Business.Reports.Volume;
-using VendingMachine_Business.UseCases;
+using VendingMachine.Business.Entities;
+using VendingMachine.Business.Exceptions;
+using VendingMachine.Business.Interfaces;
+using VendingMachine.Business.Reports.Volume;
+using VendingMachine.Business.UseCases;
 
 namespace iQuest.VendingMachineTests.TestsForUseCases
 {

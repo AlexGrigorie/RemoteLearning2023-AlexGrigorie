@@ -1,5 +1,5 @@
 using Autofac;
-using VendingMachine_Business.Interfaces;
+using VendingMachine.Business.Interfaces;
 
 namespace iQuest.VendingMachine
 {

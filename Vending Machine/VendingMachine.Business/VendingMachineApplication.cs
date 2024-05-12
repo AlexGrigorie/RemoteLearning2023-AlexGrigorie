@@ -1,15 +1,15 @@
-﻿using iQuest.VendingMachine.Exceptions;
-using iQuest.VendingMachine.Interfaces;
+using VendingMachine.Business.Exceptions;
+using VendingMachine.Business.Interfaces;
 
-namespace iQuest.VendingMachine
+namespace VendingMachine.Business
 {
     internal class VendingMachineApplication : IVendingMachineApplication
     {
-        private readonly List<IUseCase> useCases;
+        private readonly IEnumerable<IApplicationCommand> useCases;
         private readonly IMainDisplay mainDisplay;
         private readonly ITurnOffService turnOffService;
 
-        public VendingMachineApplication(List<IUseCase> useCases, IMainDisplay mainDisplay, ITurnOffService turnOffService)
+        public VendingMachineApplication(IEnumerable<IApplicationCommand> useCases, IMainDisplay mainDisplay, ITurnOffService turnOffService)
         {
             this.useCases = useCases ?? throw new ArgumentNullException(nameof(useCases));
             this.mainDisplay = mainDisplay ?? throw new ArgumentNullException(nameof(mainDisplay));
@@ -22,8 +22,8 @@ namespace iQuest.VendingMachine
             {
                 try
                 {
-                    IEnumerable<IUseCase> availableUseCases = useCases.Where(x => x.CanExecute);
-                    IUseCase useCase = mainDisplay.ChooseCommand(availableUseCases);
+                    IEnumerable<IApplicationCommand> availableUseCases = useCases.Where(x => x.CanExecute);
+                    IApplicationCommand useCase = mainDisplay.ChooseCommand(availableUseCases);
                     useCase.Execute();
 
                 }

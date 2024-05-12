@@ -1,6 +1,7 @@
 ﻿using Moq;
-using VendingMachine_Business;
-using VendingMachine_Business.Interfaces;
+using VendingMachine.Business.Exceptions;
+using VendingMachine.Business.Interfaces;
+using VendingMachine.Business.PaymentTypes;
 
 namespace iQuest.VendingMachineTests.TestsForPaymentTypes
 {

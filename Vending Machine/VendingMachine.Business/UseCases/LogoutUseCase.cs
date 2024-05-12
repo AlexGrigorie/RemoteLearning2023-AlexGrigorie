@@ -1,16 +1,10 @@
-﻿using iQuest.VendingMachine.Interfaces;
+using VendingMachine.Business.Interfaces;
 
-namespace iQuest.VendingMachine.UseCases
+namespace VendingMachine.Business.UseCase
 {
     internal class LogoutUseCase : IUseCase
     {
         private readonly IAuthenticationService authenticationService;
-
-        public string Name => "logout";
-
-        public string Description => "Restrict access to administration buttons.";
-
-        public bool CanExecute => authenticationService.IsUserLoggedIn;
 
         public LogoutUseCase(IAuthenticationService authenticationService)
         {

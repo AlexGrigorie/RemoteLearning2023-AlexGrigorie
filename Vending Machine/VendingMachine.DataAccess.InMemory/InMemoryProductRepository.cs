@@ -1,6 +1,6 @@
-﻿using VendingMachine_Business.Entities;
-using VendingMachine_Business.Exceptions;
-using VendingMachine_Business.Interfaces;
+using VendingMachine.Business.Entities;
+using VendingMachine.Business.Exceptions;
+using VendingMachine.Business.Interfaces;
 
 namespace VendingMachine.DataAccess.InMemory
 {

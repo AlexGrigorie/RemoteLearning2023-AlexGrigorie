@@ -1,4 +1,5 @@
-﻿using VendingMachine_Business.Interfaces;
+using VendingMachine.Business.Interfaces;
+using VendingMachine.Business.UseCase;
 
 namespace VendingMachine.Presentation.Commands
 {
@@ -8,6 +9,7 @@ namespace VendingMachine.Presentation.Commands
         public string Name => "look";
         public string Description => "Display all available products.";
         public bool CanExecute => true;
+
         public LookCommand(IUseCaseFactory factory)
         {
             this.factory = factory ?? throw new ArgumentNullException(nameof(factory));

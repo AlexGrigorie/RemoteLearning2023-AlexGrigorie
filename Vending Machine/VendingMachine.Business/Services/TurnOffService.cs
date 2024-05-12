@@ -1,6 +1,6 @@
-﻿using iQuest.VendingMachine.Interfaces;
+﻿using VendingMachine.Business.Interfaces;
 
-namespace iQuest.VendingMachine.Services
+namespace VendingMachine.Business.Services
 {
     internal class TurnOffService : ITurnOffService
     {
