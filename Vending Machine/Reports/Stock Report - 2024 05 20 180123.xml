@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StockReport xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<StockProduct>
+		<Name>Apple</Name>
+		<Quantity>1</Quantity>
+	</StockProduct>
+	<StockProduct>
+		<Name>Orange</Name>
+		<Quantity>7</Quantity>
+	</StockProduct>
+	<StockProduct>
+		<Name>Grape</Name>
+		<Quantity>12</Quantity>
+	</StockProduct>
+	<StockProduct>
+		<Name>Banana</Name>
+		<Quantity>10</Quantity>
+	</StockProduct>
+</StockReport>

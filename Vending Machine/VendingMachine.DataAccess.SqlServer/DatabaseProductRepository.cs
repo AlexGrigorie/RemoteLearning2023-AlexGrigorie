@@ -40,7 +40,7 @@ namespace VendingMachine.DataAccess.SqlServer
             }
         }
 
-        public void AddOrReplace(Product product) 
+        public void AddProduct(Product product) 
         {
             using (var dbContext = new ApplicationDbContextFactory().CreateDbContext())
             {
@@ -50,14 +50,19 @@ namespace VendingMachine.DataAccess.SqlServer
                     dbContext.Products.Add(product);
                     dbContext.SaveChanges();
                 }
-                else 
+                else
                 {
-                    existingProduct.Name = product.Name;
-                    existingProduct.Price = product.Price;
-                    existingProduct.Quantity += product.Quantity;
-                    dbContext.SaveChanges();
+                    UpdateProduct(product, dbContext, existingProduct);
                 }
             }
+        }
+
+        private void UpdateProduct(Product product, ApplicationDbContext dbContext, Product? existingProduct)
+        {
+            existingProduct.Name = product.Name;
+            existingProduct.Price = product.Price;
+            existingProduct.Quantity += product.Quantity;
+            dbContext.SaveChanges();
         }
     }
 }

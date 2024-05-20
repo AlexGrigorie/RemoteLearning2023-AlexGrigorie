@@ -6,7 +6,7 @@ namespace VendingMachine.Business.Interfaces
 {
     internal interface ISalesRepository
     {
-        IEnumerable<Sales> GetAllSales();
-        IEnumerable<Product> GetGroupedByProduct(TimeInterval timeInterval);
+       public IEnumerable<Sales> GetAllSales();
+       public IEnumerable<StockProduct> GetProductsBySpecificPeriod(TimeInterval timeInterval);
     }
 }

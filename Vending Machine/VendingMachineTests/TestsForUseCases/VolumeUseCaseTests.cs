@@ -1,7 +1,7 @@
 ﻿using Moq;
-using VendingMachine.Business.Entities;
 using VendingMachine.Business.Exceptions;
 using VendingMachine.Business.Interfaces;
+using VendingMachine.Business.Reports.Stock;
 using VendingMachine.Business.Reports.Volume;
 using VendingMachine.Business.UseCases;
 
@@ -27,17 +27,17 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
         public void HavingVolumeReportUseCase_WhenExecuteWithValidDates_ThenCallsReportsViewAndSerialization()
         {
             TimeInterval timeInterval = new TimeInterval { StartDate = new DateTime(2023, 1, 4), EndDate = new DateTime(2023, 6, 13) };
-            var sales = new List<Product>
+            var sales = new List<StockProduct>
             {
-                new Product { Name = "Orange", Quantity = 13 },
-                new Product { Name = "Grape", Quantity = 6 },
-                new Product { Name = "Banana", Quantity = 98 },
+                new StockProduct { Name = "Orange", Quantity = 13 },
+                new StockProduct { Name = "Grape", Quantity = 6 },
+                new StockProduct { Name = "Banana", Quantity = 98 },
             };
             mockReportsView.Setup(mrw => mrw.AskForTimeInterval());
             mockReportsView.Setup(mrw => mrw.AskForStartDate()).Returns(new DateTime(2023, 1, 4));
             mockReportsView.Setup(mrw => mrw.AskForEndDate()).Returns(new DateTime(2023, 6, 13));
             mockFileSerialization.Setup(mfs => mfs.Serilizer(It.IsAny<VolumeReport>(), It.IsAny<string>()));
-            mockSalesRepository.Setup(msp => msp.GetGroupedByProduct(timeInterval)).Returns(sales);
+            mockSalesRepository.Setup(msp => msp.GetProductsBySpecificPeriod(timeInterval)).Returns(sales);
             volumeReportUseCase.Execute();
             mockReportsView.Verify(mrw => mrw.AskForTimeInterval(), Times.Once);
             mockReportsView.Verify(mrw => mrw.AskForStartDate(), Times.Once);

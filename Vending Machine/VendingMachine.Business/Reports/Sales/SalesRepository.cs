@@ -1,6 +1,6 @@
 ﻿using VendingMachine.Business.Interfaces;
 using VendingMachine.Business.Reports.Volume;
-using Product = VendingMachine.Business.Reports.Stock.Product;
+using StockProduct = VendingMachine.Business.Reports.Stock.StockProduct;
 using ProductStock = VendingMachine.Business.Entities.Product;
 
 namespace VendingMachine.Business.Reports.Sales
@@ -65,11 +65,11 @@ namespace VendingMachine.Business.Reports.Sales
         {
             return sales;
         }
-        public IEnumerable<Product> GetGroupedByProduct(TimeInterval timeInterval)
+        public IEnumerable<StockProduct> GetProductsBySpecificPeriod(TimeInterval timeInterval)
         {
             return sales.Where(x => x.SaleDate.Date >= timeInterval.StartDate || x.SaleDate.Date >= timeInterval.EndDate)
                                                    .GroupBy(x => x.Product.Name)
-                                                   .Select(x => new Product { Name = x.Key, Quantity = x.Sum(q => q.Product.Quantity) });
+                                                   .Select(x => new StockProduct { Name = x.Key, Quantity = x.Sum(q => q.Product.Quantity) });
         }
     }
 }

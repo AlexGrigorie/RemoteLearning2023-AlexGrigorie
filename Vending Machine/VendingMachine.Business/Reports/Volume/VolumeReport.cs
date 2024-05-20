@@ -4,10 +4,10 @@ namespace VendingMachine.Business.Reports.Volume
 {
     public class VolumeReport
     {
-        public DateTime StarDate { get; set; }
+        public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }
 
-        public List<Product> Sales { get; set; }
+        public List<StockProduct> Sales { get; set; }
     }
 }

@@ -2,10 +2,10 @@
 {
     internal interface IReportsView
     {
-        DateTime AskForStartDate();
-        DateTime AskForEndDate();
-        void AskForTimeInterval();
-        void DisplaySuccessMessage();
-        string DisplayCurrentDateTime();
+       public DateTime AskForStartDate();
+       public DateTime AskForEndDate();
+       public void AskForTimeInterval();
+       public void DisplaySuccessMessage();
+       public string DisplayCurrentDateTime();
     }
 }

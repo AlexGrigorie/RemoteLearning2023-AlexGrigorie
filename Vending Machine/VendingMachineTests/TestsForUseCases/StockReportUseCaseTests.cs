@@ -1,8 +1,8 @@
 ﻿using Moq;
+using VendingMachine.Business.Entities;
 using VendingMachine.Business.Interfaces;
 using VendingMachine.Business.Reports.Stock;
 using VendingMachine.Business.UseCases;
-using Product = VendingMachine.Business.Entities.Product;
 
 namespace iQuest.VendingMachineTests.TestsForUseCases
 {

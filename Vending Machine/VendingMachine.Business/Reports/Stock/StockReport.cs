@@ -3,11 +3,8 @@
 namespace VendingMachine.Business.Reports.Stock
 {
     [XmlRoot("StockReport")]
-    public class StockReport : List<Product>
+    public class StockReport : List<StockProduct>
     {
-        public StockReport(IEnumerable<Product> reports) : base(reports)
-        {
-
-        }
+        public StockReport(IEnumerable<StockProduct> reports) : base(reports){}
     }
 }

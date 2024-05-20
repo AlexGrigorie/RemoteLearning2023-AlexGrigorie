@@ -8,7 +8,7 @@ namespace VendingMachine.Business.Serialization
     {
         private readonly string reportPath;
         private readonly string reportType;
-
+        private const int indentationSize = 4;
 
         public ReportJsonSerialization(string reportPath, string reportType)
         {
@@ -23,7 +23,7 @@ namespace VendingMachine.Business.Serialization
             using (JsonWriter jsonWriter = new JsonTextWriter(streamWriter)
             {
                 Formatting = Formatting.Indented,
-                Indentation = 4
+                Indentation = indentationSize
             })
             {
                 serializer.Serialize(jsonWriter, obj);

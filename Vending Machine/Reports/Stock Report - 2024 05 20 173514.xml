@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfProduct xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Product>
+		<Id>0</Id>
+		<ColumnId>11</ColumnId>
+		<Name>Apple</Name>
+		<Price>2</Price>
+		<Quantity>1</Quantity>
+	</Product>
+	<Product>
+		<Id>0</Id>
+		<ColumnId>12</ColumnId>
+		<Name>Orange</Name>
+		<Price>4</Price>
+		<Quantity>7</Quantity>
+	</Product>
+	<Product>
+		<Id>0</Id>
+		<ColumnId>13</ColumnId>
+		<Name>Grape</Name>
+		<Price>2.99</Price>
+		<Quantity>12</Quantity>
+	</Product>
+	<Product>
+		<Id>0</Id>
+		<ColumnId>14</ColumnId>
+		<Name>Banana</Name>
+		<Price>2.5</Price>
+		<Quantity>10</Quantity>
+	</Product>
+</ArrayOfProduct>

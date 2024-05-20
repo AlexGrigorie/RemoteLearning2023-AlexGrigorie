@@ -9,6 +9,7 @@ namespace VendingMachine.Business.Serialization
     {
         private readonly string reportPath;
         private readonly string reportType;
+        private const string identationType = "\t";
 
         public ReportXmlSerialization(string reportPath, string reportType)
         {
@@ -22,7 +23,7 @@ namespace VendingMachine.Business.Serialization
             XmlWriterSettings settings = new XmlWriterSettings
             {
                 Indent = true,
-                IndentChars = "\t",
+                IndentChars = identationType,
             };
             string fullPath = Path.Combine(reportPath, reportName + reportType);
             using (StreamWriter streamWriter = new StreamWriter(fullPath, false, Encoding.UTF8))

@@ -26,9 +26,9 @@ namespace VendingMachine.Business.UseCases
 
             if (!ConflictWith(timeInterval))
             {
-                var salesProducts = salesRepository.GetGroupedByProduct(timeInterval);
-                var volumProducts = new VolumeReport{ StarDate = timeInterval.StartDate, EndDate = timeInterval.EndDate, Sales = salesProducts.ToList() };
-                fileSerialization.Serilizer(volumProducts, $"Volume Report - {reportsView.DisplayCurrentDateTime()}");
+                var salesProducts = salesRepository.GetProductsBySpecificPeriod(timeInterval);
+                var volumeProducts = new VolumeReport{ StartDate = timeInterval.StartDate, EndDate = timeInterval.EndDate, Sales = salesProducts.ToList() };
+                fileSerialization.Serilizer(volumeProducts, $"Volume Report - {reportsView.DisplayCurrentDateTime()}");
                 reportsView.DisplaySuccessMessage();
             }
             else

@@ -23,13 +23,13 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
         public void HavingSupplyExistingProductUseCase_WhenExecute_ThenIncreaseQuantity()
         {
             var product = new Product { ColumnId = 12, Name="Orange", Price=2, Quantity = 13 };
-            mockSupplyProductView.Setup(msp => msp.RequestNewProduct()).Returns(product);
-            mockProductRepository.Setup(mpr => mpr.AddOrReplace(product));
+            mockSupplyProductView.Setup(msp => msp.GetNewProduct()).Returns(product);
+            mockProductRepository.Setup(mpr => mpr.AddProduct(product));
             mockSupplyProductView.Setup(msp => msp.DisplaySuccessMessage());
             supplyNewProductUse.Execute();
-            mockSupplyProductView.Verify(msp => msp.RequestNewProduct(), Times.Once);
+            mockSupplyProductView.Verify(msp => msp.GetNewProduct(), Times.Once);
             mockSupplyProductView.Verify(msp => msp.DisplaySuccessMessage(), Times.Once);
-            mockProductRepository.Verify(mpr => mpr.AddOrReplace(product), Times.Once);
+            mockProductRepository.Verify(mpr => mpr.AddProduct(product), Times.Once);
         }
     }
 }

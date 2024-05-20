@@ -14,7 +14,7 @@ namespace VendingMachine.Business.UseCases
         }
         public void Execute()
         {
-            QuantitySupply quantitySupply = supplyProducView.RequestProductQuantity();
+            QuantitySupply quantitySupply = supplyProducView.GetProductQuantity();
             productRepository.IncreaseQuantity(quantitySupply);
             supplyProducView.DisplaySuccessMessage();
         }

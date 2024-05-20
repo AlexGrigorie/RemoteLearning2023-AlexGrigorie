@@ -4,8 +4,8 @@ namespace VendingMachine.Business.Interfaces
 {
     internal interface ISupplyProducView
     {
-        QuantitySupply RequestProductQuantity();
-        Product RequestNewProduct();
-        void DisplaySuccessMessage();
+        public QuantitySupply GetProductQuantity();
+        public Product GetNewProduct();
+        public void DisplaySuccessMessage();
     }
 }

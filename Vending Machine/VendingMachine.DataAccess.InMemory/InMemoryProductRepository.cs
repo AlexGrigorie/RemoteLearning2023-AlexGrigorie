@@ -61,7 +61,7 @@ namespace VendingMachine.DataAccess.InMemory
             }
             product.Quantity += quantitySupply.Quantity;
         }
-        public void AddOrReplace(Product product)
+        public void AddProduct(Product product)
         {
             var existingProduct = products.FirstOrDefault(p => p.ColumnId == product.ColumnId);
             if (existingProduct == null)
@@ -70,10 +70,15 @@ namespace VendingMachine.DataAccess.InMemory
             }
             else
             {
-                existingProduct.Name = product.Name;
-                existingProduct.Price = product.Price;
-                existingProduct.Quantity += product.Quantity;
+                UpdateProduct(product, existingProduct);
             }
+        }
+
+        private void UpdateProduct(Product product, Product? existingProduct)
+        {
+            existingProduct.Name = product.Name;
+            existingProduct.Price = product.Price;
+            existingProduct.Quantity += product.Quantity;
         }
     }
 }

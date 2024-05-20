@@ -104,7 +104,7 @@ namespace iQuest.VendingMachine
 
             var configuration = builder.Build();
 
-            return configuration["AppSettings:RaportsType"];
+            return configuration["AppSettings:ReportsType"];
         }
 
         private static string GetRepoType()
@@ -114,7 +114,7 @@ namespace iQuest.VendingMachine
 
             var configuration = builder.Build();
 
-            return configuration["AppSettings:RaportsType"];
+            return configuration["AppSettings:RepoType"];
         }
     }
 }

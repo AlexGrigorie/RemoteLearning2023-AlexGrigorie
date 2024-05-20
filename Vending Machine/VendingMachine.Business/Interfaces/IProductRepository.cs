@@ -6,7 +6,7 @@ namespace VendingMachine.Business.Interfaces
     {
         public Product GetByColumn(int columnId);
         public IEnumerable<Product> GetAll();
-        void IncreaseQuantity(QuantitySupply quantitySupply);
-        void AddOrReplace(Product product);
+        public void IncreaseQuantity(QuantitySupply quantitySupply);
+        public void AddProduct(Product product);
     }
 }
