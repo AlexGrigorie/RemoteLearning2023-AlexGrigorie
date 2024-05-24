@@ -1,25 +1,24 @@
-﻿using iQuest.VendingMachine.Interfaces;
+﻿using VendingMachine.Business.Interfaces;
 
-namespace iQuest.VendingMachine.UseCases
+namespace VendingMachine.Business.UseCases
 {
     internal class LookUseCase : IUseCase
     {
+        private const string customMessageLookUseCase = "The user is searching for a product.";
         private readonly IProductRepository productRepository;
         private readonly IShelfView shelfView;
-        public string Name => "look";
+        private readonly ILoggerService loggerService;
 
-        public string Description => "Display all available products.";
-
-        public bool CanExecute => true;
-
-        public LookUseCase(IProductRepository productRepository, IShelfView shelfView)
+        public LookUseCase(IProductRepository productRepository, IShelfView shelfView, ILoggerService loggerService)
         {
             this.productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
             this.shelfView = shelfView ?? throw new ArgumentNullException(nameof(shelfView));
+            this.loggerService = loggerService ?? throw new ArgumentNullException(nameof(loggerService));
         }
 
         public void Execute()
         {
+            loggerService.LogInformation(customMessageLookUseCase);
             shelfView.DisplayProducts(productRepository.GetAll());
         }
     }

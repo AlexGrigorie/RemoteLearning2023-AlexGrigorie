@@ -1,8 +1,15 @@
 ﻿using Moq;
+<<<<<<< HEAD
 using VendingMachine_Business.Interfaces;
 using VendingMachine_Business.Reports.Stock;
 using VendingMachine_Business.UseCases;
 using Product = VendingMachine_Business.Entities.Product;
+=======
+using VendingMachine.Business.Entities;
+using VendingMachine.Business.Interfaces;
+using VendingMachine.Business.Reports.Stock;
+using VendingMachine.Business.UseCases;
+>>>>>>> main
 
 namespace iQuest.VendingMachineTests.TestsForUseCases
 {
@@ -12,7 +19,10 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
         private Mock<IProductRepository> mockProductRepository;
         private Mock<IReportsView> mockReportsView;
         private Mock<IFileSerialization> mockFileSerialization;
+<<<<<<< HEAD
         private Mock<ILoggerService> mockLoggerService;
+=======
+>>>>>>> main
         private StockReportUseCase stockReportUseCase;
 
         [TestInitialize]
@@ -21,8 +31,12 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
             mockProductRepository = new Mock<IProductRepository>();
             mockReportsView = new Mock<IReportsView>();
             mockFileSerialization = new Mock<IFileSerialization>();
+<<<<<<< HEAD
             mockLoggerService = new Mock<ILoggerService>();
             stockReportUseCase = new StockReportUseCase(mockFileSerialization.Object, mockProductRepository.Object, mockReportsView.Object, mockLoggerService.Object);
+=======
+            stockReportUseCase = new StockReportUseCase(mockFileSerialization.Object, mockProductRepository.Object, mockReportsView.Object);
+>>>>>>> main
         }
 
         [TestMethod]

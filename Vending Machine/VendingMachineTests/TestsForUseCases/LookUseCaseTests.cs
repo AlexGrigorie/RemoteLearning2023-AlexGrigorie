@@ -1,6 +1,12 @@
 ﻿using Moq;
+<<<<<<< HEAD
 using VendingMachine_Business.Entities;
 using VendingMachine_Business.Interfaces;
+=======
+using VendingMachine.Business.Entities;
+using VendingMachine.Business.Interfaces;
+using VendingMachine.Business.UseCase;
+>>>>>>> main
 
 namespace iQuest.VendingMachineTests.TestsForUseCases
 {
@@ -17,8 +23,12 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
         {
             mockProductRepository = new Mock<IProductRepository>();
             mockShelfView = new Mock<IShelfView>();
+<<<<<<< HEAD
             mockLoggerService = new Mock<ILoggerService>();
             lookUseCase = new LookUseCase(mockProductRepository.Object, mockShelfView.Object, mockLoggerService.Object);
+=======
+            lookUseCase = new LookUseCase(mockProductRepository.Object, mockShelfView.Object);
+>>>>>>> main
         }
         [TestMethod]
         public void HavingLookUseCase_WhenExecute_ThenDisplayAllProducts()

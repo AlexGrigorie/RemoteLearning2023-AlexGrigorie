@@ -1,9 +1,17 @@
 ﻿using Moq;
+<<<<<<< HEAD
 using VendingMachine_Business.Entities;
 using VendingMachine_Business.Exceptions;
 using VendingMachine_Business.Interfaces;
 using VendingMachine_Business.Reports.Sales;
 using VendingMachine_Business.UseCases;
+=======
+using VendingMachine.Business.Entities;
+using VendingMachine.Business.Exceptions;
+using VendingMachine.Business.Interfaces;
+using VendingMachine.Business.Reports.Sales;
+using VendingMachine.Business.UseCases;
+>>>>>>> main
 
 namespace iQuest.VendingMachineTests.TestsForUseCases
 {
@@ -13,7 +21,10 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
         private Mock<ISalesRepository> mockSalesRepository;
         private Mock<IReportsView> mockReportsView;
         private Mock<IFileSerialization> mockFileSerialization;
+<<<<<<< HEAD
         private Mock<ILoggerService> mockLoggerService;
+=======
+>>>>>>> main
         private SalesReportUseCase salesReportUseCase;
 
         [TestInitialize]
@@ -22,8 +33,12 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
             mockSalesRepository = new Mock<ISalesRepository>();
             mockReportsView = new Mock<IReportsView>();
             mockFileSerialization = new Mock<IFileSerialization>();
+<<<<<<< HEAD
             mockLoggerService = new Mock<ILoggerService>();
             salesReportUseCase = new SalesReportUseCase(mockSalesRepository.Object, mockReportsView.Object, mockFileSerialization.Object, mockLoggerService.Object);
+=======
+            salesReportUseCase = new SalesReportUseCase(mockSalesRepository.Object, mockReportsView.Object, mockFileSerialization.Object);
+>>>>>>> main
         }
         [TestMethod]
         public void HavingSalesReportUseCase_WhenExecuteWithValidDates_ThenCallsReportsViewAndSerialization()

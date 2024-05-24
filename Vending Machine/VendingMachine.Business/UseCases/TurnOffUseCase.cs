@@ -1,26 +1,22 @@
-﻿using iQuest.VendingMachine.Interfaces;
+﻿using VendingMachine.Business.Interfaces;
 
-namespace iQuest.VendingMachine.UseCases
+namespace VendingMachine.Business.UseCases
 {
     internal class TurnOffUseCase : IUseCase
     {
+        private const string customMessageUserExist = "User has closed the app and lives the life.";
         private readonly ITurnOffService turnOffService;
-        private readonly IAuthenticationService authenticationService;
+        private readonly ILoggerService loggerService;
 
-        public string Name => "exit";
-
-        public string Description => "Go to live your life.";
-
-        public bool CanExecute => authenticationService.IsUserLoggedIn;
-
-        public TurnOffUseCase(IAuthenticationService authenticationService, ITurnOffService turnOffService)
+        public TurnOffUseCase(ITurnOffService turnOffService, ILoggerService loggerService)
         {
-            this.authenticationService = authenticationService;
-            this.turnOffService = turnOffService;
+            this.turnOffService = turnOffService ?? throw new ArgumentNullException(nameof(turnOffService));
+            this.loggerService = loggerService ?? throw new ArgumentNullException(nameof(loggerService));
         }
 
         public void Execute()
         {
+           loggerService.LogInformation(customMessageUserExist);
            turnOffService.TurnOff();
         }
     }

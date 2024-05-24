@@ -1,4 +1,4 @@
-﻿namespace iQuest.VendingMachine.Exceptions
+namespace VendingMachine.Business.Exceptions
 {
     internal class InsufficientStockException : Exception
     {

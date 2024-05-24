@@ -1,5 +1,10 @@
 ﻿using Moq;
+<<<<<<< HEAD
 using VendingMachine_Business.Interfaces;
+=======
+using VendingMachine.Business.Interfaces;
+using VendingMachine.Business.UseCase;
+>>>>>>> main
 
 namespace iQuest.VendingMachineTests.TestsForUseCases
 {
@@ -14,8 +19,12 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
         public void SetupTest()
         {
             mockTurnOffService = new Mock<ITurnOffService>();
+<<<<<<< HEAD
             mockLoggerService = new Mock<ILoggerService>();
             turnOffUseCase = new TurnOffUseCase(mockTurnOffService.Object, mockLoggerService.Object);
+=======
+            turnOffUseCase = new TurnOffUseCase(mockTurnOffService.Object);
+>>>>>>> main
         }
         [TestMethod]
         public void TurnOffUseCase_Execute_CallsTurnOffMethodOnTurnOffService()

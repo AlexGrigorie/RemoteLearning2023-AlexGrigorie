@@ -1,8 +1,8 @@
 ﻿using iQuest.VendingMachine.PresentationLayer;
 using System.Text.RegularExpressions;
-using VendingMachine_Business.Entities;
-using VendingMachine_Business.Exceptions;
-using VendingMachine_Business.Interfaces;
+using VendingMachine.Business.Entities;
+using VendingMachine.Business.Exceptions;
+using VendingMachine.Business.Interfaces;
 
 namespace VendingMachine.Presentation.PresentationLayer
 {
@@ -16,15 +16,14 @@ namespace VendingMachine.Presentation.PresentationLayer
         {
             Display("Your operation was finalized with successful!", color: ConsoleColor.Green);
         }
-        public QuantitySupply RequestProductQuantity()
+        public QuantitySupply GetProductQuantity()
         {
             QuantitySupply quantitySupply = new QuantitySupply();
             quantitySupply.ColumnId = AskForProductColumnId();
             quantitySupply.Quantity = AskForProductQuantity();
             return quantitySupply;
         }
-
-        public Product RequestNewProduct()
+        public Product GetNewProduct()
         {
             Product product = new Product();
             product.ColumnId = AskForProductColumnId();
@@ -36,14 +35,13 @@ namespace VendingMachine.Presentation.PresentationLayer
 
         private float AskForProductPrice()
         {
-            Display(priceProduct, ConsoleColor.Cyan);
-            string userInput = Console.ReadLine();
+            string userInput = GetUserInput();
             if (string.IsNullOrEmpty(userInput))
             {
                 throw new CancelSupplyExistingProductException();
             }
 
-            if (!int.TryParse(userInput, out int coloumnId))
+            if (!int.TryParse(userInput, out int columnId))
             {
                 do
                 {
@@ -53,18 +51,24 @@ namespace VendingMachine.Presentation.PresentationLayer
                     {
                         throw new CancelSupplyExistingProductException();
                     }
-                } while (!int.TryParse(userInput, out coloumnId));
+                } while (!int.TryParse(userInput, out columnId));
             }
 
-            return coloumnId;
+            return columnId;
+        }
+
+        private string GetUserInput()
+        {
+            Display(priceProduct, ConsoleColor.Cyan);
+            string userInput = Console.ReadLine();
+            return userInput;
         }
 
         private string AskforProductName()
         {
-            Display(nameProduct, ConsoleColor.Cyan);
+            string userInput = GetUserInput();
             string regexPattern = @"^[a-zA-Z]+$";
             Regex regex = new Regex(regexPattern);
-            string userInput = Console.ReadLine();
             if (string.IsNullOrEmpty(userInput))
             {
                 throw new CancelSupplyExistingProductException();
@@ -88,8 +92,7 @@ namespace VendingMachine.Presentation.PresentationLayer
 
         private int AskForProductColumnId() 
         {
-            Display(columnIdSupplyProduct, ConsoleColor.Cyan);
-            string userInput = Console.ReadLine();
+            string userInput = GetUserInput();
             if (string.IsNullOrEmpty(userInput))
             {
                 throw new CancelSupplyExistingProductException();
@@ -112,8 +115,7 @@ namespace VendingMachine.Presentation.PresentationLayer
         }
         private int AskForProductQuantity()
         {
-            Display(quantitySupplyProduct, ConsoleColor.Cyan);
-            string userInput = Console.ReadLine();
+            string userInput = GetUserInput();
             if (string.IsNullOrEmpty(userInput))
             {
                 throw new CancelSupplyExistingProductException();

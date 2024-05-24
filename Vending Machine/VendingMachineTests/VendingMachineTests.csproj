@@ -11,6 +11,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="TestsForUseCases\PaymentUseCaseTests.cs~RF1f27bd5e.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
     <PackageReference Include="Moq" Version="4.20.70" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.2.10" />
@@ -20,7 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\VendingMachine.Presentation\VendingMachine.Presentation.csproj" />
-    <ProjectReference Include="..\VendingMachine_Business\VendingMachine_Business.csproj" />
+    <ProjectReference Include="..\VendingMachine.Business\VendingMachine.Business.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
-﻿using VendingMachine_Business.Interfaces;
+using VendingMachine.Business.Interfaces;
+using VendingMachine.Business.UseCases;
 
 namespace VendingMachine.Presentation.Commands
 {
@@ -9,6 +10,7 @@ namespace VendingMachine.Presentation.Commands
         public string Name => "login";
         public string Description => "Get access to administration buttons.";
         public bool CanExecute => !authenticationService.IsUserLoggedIn;
+
         public LoginCommand(IAuthenticationService authenticationService, IUseCaseFactory factory)
         {
             this.authenticationService = authenticationService ?? throw new ArgumentNullException(nameof(authenticationService));

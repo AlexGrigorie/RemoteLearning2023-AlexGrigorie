@@ -1,4 +1,4 @@
-﻿namespace iQuest.VendingMachine.Helper
+﻿namespace VendingMachine.Business
 {
     internal static class CardManager
     {

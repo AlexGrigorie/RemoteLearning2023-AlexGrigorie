@@ -1,26 +1,23 @@
-﻿using iQuest.VendingMachine.Interfaces;
+﻿using VendingMachine.Business.Interfaces;
 
-namespace iQuest.VendingMachine.UseCases
+namespace VendingMachine.Business.UseCases
 {
     internal class LoginUseCase : IUseCase
     {
+        private const string customMessageWhenUserLogin = "User logged in!";
         private readonly IAuthenticationService authenticationService;
         private readonly IMainDisplay mainDisplay;
-
-        public string Name => "login";
-
-        public string Description => "Get access to administration buttons.";
-
-        public bool CanExecute => !authenticationService.IsUserLoggedIn;
-
-        public LoginUseCase(IAuthenticationService authenticationService, IMainDisplay mainDisplay)
+        private readonly ILoggerService loggerService;
+        public LoginUseCase(IAuthenticationService authenticationService, IMainDisplay mainDisplay, ILoggerService loggerService)
         {
             this.authenticationService = authenticationService ?? throw new ArgumentNullException(nameof(authenticationService));
             this.mainDisplay = mainDisplay ?? throw new ArgumentNullException(nameof(mainDisplay));
+            this.loggerService = loggerService ?? throw new ArgumentNullException(nameof(loggerService));
         }
 
         public void Execute()
         {
+            loggerService.LogInformation(customMessageWhenUserLogin);
             string password = mainDisplay.AskForPassword();
             authenticationService.Login(password);
         }

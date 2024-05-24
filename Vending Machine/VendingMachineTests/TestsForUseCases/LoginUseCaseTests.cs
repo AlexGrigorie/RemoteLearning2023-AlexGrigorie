@@ -1,5 +1,10 @@
 ﻿using Moq;
+<<<<<<< HEAD
 using VendingMachine_Business.Interfaces;
+=======
+using VendingMachine.Business.Interfaces;
+using VendingMachine.Business.UseCase;
+>>>>>>> main
 
 namespace iQuest.VendingMachineTests.TestsForUseCases
 {
@@ -16,8 +21,12 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
         {
             mockAuthenticationService = new Mock<IAuthenticationService>();
             mockMainDisplay = new Mock<IMainDisplay>();
+<<<<<<< HEAD
             mockLoggerService = new Mock<ILoggerService>();
             loginUseCase = new LoginUseCase(mockAuthenticationService.Object, mockMainDisplay.Object, mockLoggerService.Object);
+=======
+            loginUseCase = new LoginUseCase(mockAuthenticationService.Object, mockMainDisplay.Object);
+>>>>>>> main
         }
         [TestMethod]
         public void HavingLoginUseCase_WhenExecuteForCorrectPassword_ThenSetUserIsLoggedInToTrue()

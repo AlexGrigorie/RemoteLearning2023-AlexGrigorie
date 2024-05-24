@@ -1,5 +1,10 @@
 ﻿using Moq;
+<<<<<<< HEAD
 using VendingMachine_Business.Interfaces;
+=======
+using VendingMachine.Business.Interfaces;
+using VendingMachine.Business.UseCase;
+>>>>>>> main
 
 namespace iQuest.VendingMachineTests.TestsForUseCases
 {
@@ -14,8 +19,12 @@ namespace iQuest.VendingMachineTests.TestsForUseCases
         public void SetupTest()
         {
             mockAuthenticationService = new Mock<IAuthenticationService>();
+<<<<<<< HEAD
             mockLoggerService = new Mock<ILoggerService>();
             logoutUseCase = new LogoutUseCase(mockAuthenticationService.Object, mockLoggerService.Object);
+=======
+            logoutUseCase = new LogoutUseCase(mockAuthenticationService.Object);
+>>>>>>> main
         }
 
         [TestMethod]

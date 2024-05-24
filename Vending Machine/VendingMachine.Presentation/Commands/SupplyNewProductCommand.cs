@@ -1,5 +1,5 @@
-﻿using VendingMachine_Business.Interfaces;
-using VendingMachine_Business.UseCases;
+using VendingMachine.Business.Interfaces;
+using VendingMachine.Business.UseCases;
 
 namespace VendingMachine.Presentation.Commands
 {

@@ -1,5 +1,5 @@
-﻿using VendingMachine_Business.Entities;
-using VendingMachine_Business.Interfaces;
+using VendingMachine.Business.Entities;
+using VendingMachine.Business.Interfaces;
 
 namespace iQuest.VendingMachine.PresentationLayer
 {
@@ -11,7 +11,7 @@ namespace iQuest.VendingMachine.PresentationLayer
             DisplayLine(title, ConsoleColor.Cyan);
             foreach (Product product in products)
             {
-                DisplayLine($"Id:{product.ColumnId} Name:{product.Name} Price:{product.Price}$ Quantity:{product.Quantity}", ConsoleColor.DarkCyan);
+                DisplayLine($"Id:{product.ColumnId} Name:{product.Name} Price:{product.Price}lei Quantity:{product.Quantity}", ConsoleColor.DarkCyan);
             }
         }
     }
